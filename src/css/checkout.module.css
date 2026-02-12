@@ -1,0 +1,278 @@
+.checkoutContainer {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  background: #fafafa;
+  min-height: 100vh;
+}
+
+.checkoutHeader {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.logo {
+  font-size: 28px;
+  font-weight: 700;
+  background: linear-gradient(135deg, #b71c43 0%, #b24f68 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.checkoutMain {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+/* Order Summary */
+.orderSummary {
+  background: white;
+  border-radius: 12px;
+  padding: 24px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+}
+
+.productItem {
+  display: flex;
+  gap: 16px;
+  margin-bottom: 24px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid #eee;
+}
+
+.productImage {
+  width: 60px;
+  height: 60px;
+  border-radius: 8px;
+  background: #f5f5f5;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+}
+
+.productDetails {
+  flex: 1;
+}
+
+.productTitle {
+  font-weight: 600;
+  margin-bottom: 4px;
+  color: #333;
+}
+
+.productPrice {
+  font-size: 18px;
+  font-weight: 700;
+  color: #000;
+}
+
+.priceBreakdown {
+  margin-bottom: 20px;
+}
+
+.priceRow {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 8px;
+  font-size: 14px;
+  color: #666;
+}
+
+.totalRow {
+  font-size: 20px !important;
+  font-weight: 700 !important;
+  color: #000 !important;
+  margin-top: 12px !important;
+  border-top: 1px solid #eee;
+  padding-top: 12px;
+}
+
+.discountRow {
+  color: #e74c3c !important;
+}
+
+.giftCardSection {
+  margin-top: 20px;
+}
+
+.giftCardInputWrapper {
+  display: flex;
+  gap: 12px;
+}
+
+.giftCardInput {
+  flex: 1;
+  padding: 12px 16px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 14px;
+}
+
+.applyButton {
+  padding: 12px 24px;
+  background:#b24f68;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.applyButton:hover:not(:disabled) {
+  background: #b71c43;
+}
+
+.applyButton:disabled {
+  background: #ccc;
+  cursor: not-allowed;
+}
+
+/* Payment Buttons */
+.paymentButtons {
+  display: flex;
+  gap: 12px;
+  background: white;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+}
+
+.shopButton, .paypalButton, .payButton {
+  flex: 1;
+  padding: 16px;
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.shopButton {
+  background: #f8f9fa;
+  color: #b24f68;
+}
+
+.paypalButton {
+  background:#b71c43;
+  color: white;
+}
+
+.payButton {
+  background: linear-gradient(135deg, #b71c43 0%,#b24f68 100%);
+  color: white;
+}
+
+/* Form Styles */
+.checkoutForm {
+  background: white;
+  border-radius: 12px;
+  padding: 32px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+}
+
+.formSection {
+  margin-bottom: 32px;
+}
+
+.formSection:last-child {
+  margin-bottom: 0;
+}
+
+.formSection h3 {
+  font-size: 20px;
+  font-weight: 700;
+  margin-bottom: 8px;
+  color: #000;
+}
+
+.helpText {
+  color: #666;
+  margin-bottom: 24px;
+  font-size: 14px;
+}
+
+.formGroup {
+  margin-bottom: 20px;
+}
+
+.formRow {
+  display: flex;
+  gap: 16px;
+}
+
+.half {
+  flex: 1;
+}
+
+.quarter {
+  flex: 0.5;
+}
+
+.formInput {
+  width: 100%;
+  padding: 16px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 16px;
+  transition: border-color 0.2s;
+  box-sizing: border-box;
+}
+
+.formInput:focus {
+  outline: none;
+  border-color: #b24f68;
+  box-shadow: 0 0 0 3px #f1d5dc;
+}
+
+.formInput.error {
+  border-color: #e74c3c;
+}
+
+.errorText {
+  color: #e74c3c;
+  font-size: 14px;
+  margin-top: 4px;
+  display: block;
+}
+
+.submitButton {
+  width: 100%;
+  padding: 20px;
+  background: #b24f68;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 18px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.submitButton:hover {
+  background: #b71c43;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .checkoutContainer {
+    padding: 16px;
+  }
+  
+  .paymentButtons {
+    flex-direction: column;
+  }
+  
+  .formRow {
+    flex-direction: column;
+    gap: 0;
+  }
+  
+  .giftCardInputWrapper {
+    flex-direction: column;
+  }
+}

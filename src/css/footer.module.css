@@ -1,0 +1,92 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair:ital,opsz,wght@0,5..1200,300..900;1,5..1200,300..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+.elraftFooter {
+  position:relative;
+  top:0px;
+  height: fit-content;
+  padding: 40px 8%;
+  background:#000;
+  color: #fdf2f8;
+  font-family: "Poppins", system-ui, sans-serif;
+}
+
+.footerInner {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 40px;
+  justify-content: space-between;
+  align-items: flex-start;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+  padding-bottom: 24px;
+}
+
+.footerBrand h2 {
+  font-size: 28px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+.footerBrand p {
+  margin-top: 8px;
+  max-width: 260px;
+  font-size: 14px;
+  opacity: 0.8;
+}
+
+.footerLinks {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 32px;
+}
+
+.footerLinks .col h4 {
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 12px;
+}
+
+.footerLinks .col a {
+  display: block;
+  font-size: 14px;
+  color: #ffe4f0;
+  text-decoration: none;
+  margin-bottom: 6px;
+  opacity: 0.85;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.footerLinks .col a:hover {
+  opacity: 1;
+  transform: translateX(2px);
+}
+
+.socialRow {
+  display: flex;
+  gap: 10px;
+}
+
+.socialRow a {
+  width: 30px;
+  height: 30px;
+  border-radius: 999px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  background: #fff;
+  
+}
+.socialRow a img{
+  object-fit: cover;
+  width:30px;
+  height:30px;
+}
+.footerBottom {
+  padding-top: 16px;
+  text-align: center;
+  font-size: 12px;
+  opacity: 0.75;
+}
