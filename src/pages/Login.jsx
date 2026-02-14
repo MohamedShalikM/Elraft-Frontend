@@ -1,16 +1,18 @@
 import React, { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom"; // Added useNavigate
 import styles from "../css/login.module.css";
 import Navbar from "./Navbar";
 import Footer from "./Footer";
 
 export default function Login() {
+  const API_URL = process.env.REACT_APP_API_URL || "http://localhost:5000";
   const [formData, setFormData] = useState({
     email: "",
     password: "",
   });
   const [errors, setErrors] = useState({});
   const [isLoading, setIsLoading] = useState(false);
+  const [serverError, setServerError] = useState("");
   const navigate = useNavigate();
 
   const handleChange = (e) => {
@@ -18,6 +20,10 @@ export default function Login() {
       ...formData,
       [e.target.name]: e.target.value,
     });
+    if (errors[e.target.name]) {
+      setErrors({ ...errors, [e.target.name]: "" });
+    }
+    setServerError("");
   };
 
   const validateForm = () => {
@@ -26,29 +32,42 @@ export default function Login() {
     else if (!/\S+@\S+\.\S+/.test(formData.email))
       newErrors.email = "Email is invalid";
     if (!formData.password) newErrors.password = "Password is required";
+    else if (formData.password.length < 6)
+      newErrors.password = "Password must be at least 6 characters";
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setServerError("");
     if (!validateForm()) return;
 
     setIsLoading(true);
     try {
-      // Replace with your Django API endpoint
-      const response = await fetch("http://127.0.0.1:8000/api/login/", {
+      const res = await fetch(`${API_URL}/api/auth/login`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData),
       });
-      if (response.ok) {
-        navigate("/");
-      } else {
-        // Handle error
-        alert("Login failed");
+
+      const data = await res.json();
+
+      if (!res.ok) {
+        setServerError(data.message || "Invalid credentials");
+        return;
       }
+      // navigate("/");     
+
+      // Success: Store token/user (use localStorage or Context/Redux)
+      localStorage.setItem("token", data.token); // Assuming backend sends JWT token
+      localStorage.setItem("user", JSON.stringify(data.user));
+      console.log("Logged in user:", data.user);
+
+      // Redirect to dashboard/home
+      navigate("/"); // Or wherever your protected route is
     } catch (error) {
+      setServerError("Network error. Check backend connection.");
       console.error("Login error:", error);
     } finally {
       setIsLoading(false);
@@ -57,7 +76,7 @@ export default function Login() {
 
   return (
     <>
-    <Navbar/>
+      <Navbar />
       <div className={styles.loginPage}>
         <div className={styles.container}>
           <div className={styles.formCard}>
@@ -65,13 +84,16 @@ export default function Login() {
             <p className={styles.subtitle}>
               Sign in to your Raftel Fashion account
             </p>
+            {serverError && (
+              <div className={styles.serverError}>{serverError}</div>
+            )}
             <form onSubmit={handleSubmit} className={styles.form}>
               <div className={styles.inputGroup}>
                 <input
                   type="email"
                   name="email"
                   placeholder="Email"
-                  value={formData.email}
+                  value={formData.email} // Added value
                   onChange={handleChange}
                   className={`${styles.input} ${errors.email ? styles.errorInput : ""}`}
                 />
@@ -84,7 +106,7 @@ export default function Login() {
                   type="password"
                   name="password"
                   placeholder="Password"
-                  value={formData.password}
+                  value={formData.password} // Added value
                   onChange={handleChange}
                   className={`${styles.input} ${errors.password ? styles.errorInput : ""}`}
                 />
@@ -109,7 +131,7 @@ export default function Login() {
           </div>
         </div>
       </div>
-      <Footer/>
+      <Footer />
     </>
   );
 }

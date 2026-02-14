@@ -1,6 +1,7 @@
 import styles from "../css/home.module.css";
 
-import { Link } from "react-router-dom";
+import { Link,useNavigate } from "react-router-dom";
+import {useState,useEffect} from 'react';
 
 import Navbar from "./Navbar";
 import Footer from "./Footer";
@@ -29,10 +30,34 @@ import facebook from "../assets/facebook.svg";
 import twitter from "../assets/twitter.svg";
 
 export default function Home() {
+       const [welcomeMsg, setWelcomeMsg] = useState("");
+       const navigate = useNavigate();
 
+       useEffect(() => {
+         // Check if user is logged in
+         const user = localStorage.getItem("user");
+         if (user) {
+           const userData = JSON.parse(user);
+           setWelcomeMsg(`Welcome back, ${userData.name}! 👋`);
 
+           // Auto-hide after 3 seconds
+           const timer = setTimeout(() => {
+             setWelcomeMsg("");
+           }, 3000);
+
+           return () => clearTimeout(timer);
+         }
+       }, []);
   return (
     <>
+      <div className={styles.homePage}>
+      {welcomeMsg && (
+        <div className={styles.welcomeToast}>
+          {welcomeMsg}
+          <button onClick={() => setWelcomeMsg('')}>&times;</button>
+        </div>
+      )}</div>
+
       <div className={styles.home}>
         <Navbar/>
         <main>
