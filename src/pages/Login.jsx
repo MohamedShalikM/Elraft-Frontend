@@ -3,9 +3,9 @@ import { Link, useNavigate } from "react-router-dom"; // Added useNavigate
 import styles from "../css/login.module.css";
 import Navbar from "./Navbar";
 import Footer from "./Footer";
-
+ import.meta.env;
 export default function Login() {
-  const API_URL = process.env.REACT_APP_API_URL || "http://localhost:5000";
+  const API_URL = import.meta.env.VITE_API_URL || "http://localhost:5000";
   const [formData, setFormData] = useState({
     email: "",
     password: "",
