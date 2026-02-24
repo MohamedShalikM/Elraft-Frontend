@@ -5,7 +5,7 @@ import Navbar from "./Navbar";
 import Footer from "./Footer";
 
 export default function Signup() {
-  const API_URL = process.env.REACT_APP_API_URL || "http://localhost:5000";
+  const API_URL = import.meta.env.VITE_API_URL || "http://localhost:5000";
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -56,7 +56,7 @@ export default function Signup() {
 
     setIsLoading(true);
     try {
-       const res = await fetch(`${API_URL}/api/auth/login`, {
+       const res = await fetch(`${API_URL}/api/auth/register`, {
          method: "POST",
          headers: { "Content-Type": "application/json" },
          body: JSON.stringify(formData),
