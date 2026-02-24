@@ -11,7 +11,6 @@ export default function Signup() {
     email: "",
     phone: "",
     password: "",
-    confirmPassword: "",
     address: "",
   });
   const [errors, setErrors] = useState({}); // Uncommented and fixed
@@ -56,12 +55,17 @@ export default function Signup() {
 
     setIsLoading(true);
     try {
-       const res = await fetch(`${API_URL}/api/auth/login`, {
+       const res = await fetch(`${API_URL}/api/auth/register`, {
          method: "POST",
          headers: { "Content-Type": "application/json" },
-         body: JSON.stringify(formData),
+         body: JSON.stringify({
+           name: formData.name,
+           email: formData.email,
+           phone: formData.phone,
+           password: formData.password,
+           address: formData.address,
+         }),
        });
-
       const data = await res.json();
 
       if (!res.ok) {
@@ -77,7 +81,6 @@ export default function Signup() {
         email: "",
         phone: "",
         password: "",
-        confirmPassword: "",
         address: "",
       });
       navigate("/login"); // Redirect to login after success
