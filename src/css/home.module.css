@@ -5,18 +5,15 @@
   position: fixed;
   top: 60px;
   right: 20px;
-
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   color: white;
   padding: 1rem 1.5rem;
   border-radius: 10px;
   box-shadow: 0 10px 30px rgba(0,0,0,0.3);
   z-index: 9999;
-
   display: flex;
   align-items: center;
   gap: 10px;
-
   animation: slideIn 0.3s ease-out;
 }
 

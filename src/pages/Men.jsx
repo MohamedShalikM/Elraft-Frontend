@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { useCart } from "./CartContext";
 import styles from "../css/products.module.css";
 import { Link } from 'react-router-dom';
-
 import men1 from "../assets/men1.webp";
 import men2 from "../assets/men2.webp";
 import men3 from "../assets/men3.webp";
