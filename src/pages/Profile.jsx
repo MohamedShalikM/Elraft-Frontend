@@ -65,7 +65,7 @@ export default function Profile() {
               <span>{user.email}</span>
             </p>
             <p className={styles.phone}>
-              <img src={Phone} alt="phone" />
+              <img src={Phone} alt="phone number" />
               <span>{user.phone}</span>
             </p>
             <p className={styles.address}>
