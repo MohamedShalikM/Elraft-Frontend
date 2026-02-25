@@ -3,7 +3,7 @@ import { useNavigate, Link } from "react-router-dom";
 import styles from "../css/profile.module.css"; 
 import Navbar from "./Navbar";
 import Footer from "./Footer";
-import Mail from "../assets/Mail.svg";
+import Mail from "../assets/mail.svg";
 import Phone from "../assets/phone.svg";
 import Address from "../assets/address.svg";
 export default function Profile() {
