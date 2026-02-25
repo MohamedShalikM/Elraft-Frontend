@@ -1,0 +1,195 @@
+.container {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #b24f68 0%, #b71c43 50%, #000 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.profileCard, .card {
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  border-radius: 20px;
+  padding: 20px;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+  text-align: center;
+  max-width: 400px;
+  width: 100%;
+  transition: transform 0.3s ease;
+}
+
+.profileCard:hover {
+  transform: translateY(-5px);
+}
+
+.avatar {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 20px;
+  font-size: 2rem;
+  font-weight: bold;
+  color: white;
+  border: 4px solid white;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+}
+
+/* Main profile name (keep your existing) */
+.title, .name {
+  font-size: 2rem;
+  margin-bottom: 20px;
+  color: #333;
+  font-weight: 700;
+}
+
+/* Container for all contact info */
+.contactInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  margin-bottom: 30px;
+}
+
+/* Individual contact items - perfect alignment */
+.email, .phone, .address {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 16px;
+  background: rgba(255, 255, 255, 0.7);
+  border-radius: 12px;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  transition: all 0.3s ease;
+  font-size: 1rem;
+  color: #444;
+}
+
+.email:hover, .phone:hover, .address:hover {
+  background: rgba(255, 255, 255, 0.9);
+  transform: translateX(5px);
+  box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+}
+
+/* Icon styling */
+.email img, .phone img, .address img {
+  width: 20px;
+  height: 20px;
+  filter: grayscale(0.3);
+  transition: all 0.3s ease;
+}
+.phone img{
+  transform: rotate(90deg); 
+}
+
+
+.email:hover img, .phone:hover img, .address:hover img {
+  filter: grayscale(0);
+  transform: scale(1.1);
+}
+.phone:hover img{
+  transform: rotate(90deg) scale(1.1); 
+  
+}
+
+/* Text alignment */
+.email span, .phone span, .address span {
+  flex: 1;
+  font-weight: 500;
+}
+
+
+.info {
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 30px;
+  padding: 20px 0;
+  border-top: 1px solid #eee;
+  border-bottom: 1px solid #eee;
+}
+
+.infoItem {
+  text-align: center;
+}
+
+.infoItem span {
+  display: block;
+  color: #888;
+  font-size: 0.9rem;
+}
+
+.infoItem strong {
+  display: block;
+  font-size: 1.5rem;
+  color: #b24f68;
+}
+
+.logoutBtn, .loginBtn {
+  background: linear-gradient(45deg, #b24f68, #b71c43);
+  color: white;
+  border: none;
+  padding: 12px 30px;
+  border-radius: 50px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  width: 100%;
+}
+
+.logoutBtn:hover, .loginBtn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 20px #b24f68;
+}
+
+.message {
+  color: #666;
+  margin-bottom: 20px;
+  font-size: 1.1rem;
+}
+
+.loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  font-size: 1.2rem;
+  color: white;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .profileCard, .card {
+    padding: 30px 20px;
+    margin: 10px;
+  }
+
+  .title, .name {
+    font-size: 1.5rem;
+  }
+
+  .info {
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  .avatar {
+    width: 80px;
+    height: 80px;
+    font-size: 1.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .container {
+    padding: 10px;
+  }
+
+  .profileCard, .card {
+    padding: 25px 15px;
+  }
+}

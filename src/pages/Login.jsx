@@ -62,10 +62,12 @@ export default function Login() {
       // Success: Store token/user (use localStorage or Context/Redux)
       localStorage.setItem("token", data.token); // Assuming backend sends JWT token
       localStorage.setItem("user", JSON.stringify(data.user));
-      console.log("Logged in user:", data.user);
+      // console.log("Logged in user:", data.user);
 
       // Redirect to dashboard/home
-      navigate("/"); // Or wherever your protected route is
+      sessionStorage.setItem("showLoginToast", "true");
+      navigate("/"); 
+      // Or wherever your protected route is
     } catch (error) {
       setServerError("Network error. Check backend connection.");
       console.error("Login error:", error);
@@ -87,12 +89,17 @@ export default function Login() {
             {serverError && (
               <div className={styles.serverError}>{serverError}</div>
             )}
-            <form onSubmit={handleSubmit} className={styles.form}>
+            <form
+              onSubmit={handleSubmit}
+              className={styles.form}
+              autoComplete="on"
+            >
               <div className={styles.inputGroup}>
                 <input
                   type="email"
                   name="email"
                   placeholder="Email"
+                  autoComplete="email"
                   value={formData.email} // Added value
                   onChange={handleChange}
                   className={`${styles.input} ${errors.email ? styles.errorInput : ""}`}
@@ -106,6 +113,7 @@ export default function Login() {
                   type="password"
                   name="password"
                   placeholder="Password"
+                  autoComplete="current-password"
                   value={formData.password} // Added value
                   onChange={handleChange}
                   className={`${styles.input} ${errors.password ? styles.errorInput : ""}`}

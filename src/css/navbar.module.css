@@ -43,6 +43,33 @@
   border-right: 2px solid #b24f68;
 }
 
+.avatarIcon {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px; /* Match your img size */
+  height: 30px;
+  border-radius: 50%;
+  background: #b24f68;
+  color: white;
+  font-weight: bold;
+  font-size: 1rem;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  border: 2px solid #fff;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+  transition:transform 0.5s ease-in-out;
+}
+
+.avatarIcon:hover {
+  background: #b71c43;
+  transform: translateY(-4px)
+}
+
+.initials {
+  font-size: 0.9rem;
+}
 
 .userActions {
   display: flex;
@@ -51,10 +78,13 @@
 }
 
 .userActions img {
-  width: 24px;
-  height: 24px;
+  width: 28px;
+  height: 28px;
+  transition: transform 0.5s ease-in-out;
 }
-
+.userActions img:hover{
+  transform: translateY(-4px);
+}
 .hamburger {
   display: none;
   background: none;

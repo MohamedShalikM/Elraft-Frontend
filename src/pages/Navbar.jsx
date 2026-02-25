@@ -1,10 +1,19 @@
-import React, { useState, useLayoutEffect, useRef } from "react";
+import React, { useState,useEffect, useLayoutEffect, useRef } from "react";
 import styles from "../css/navbar.module.css";
 import { Link } from "react-router-dom";
 import icon1 from "../assets/icon1.svg";
 import icon3 from "../assets/icon3.svg";
 
 const Navbar = () => {
+  const [currentUser, setCurrentUser] = useState(null);
+
+  useEffect(() => {
+    const user = localStorage.getItem("user");
+    if (user) {
+      setCurrentUser(JSON.parse(user));
+    }
+  }, []);
+
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const navRef = useRef(null);
 
@@ -68,9 +77,22 @@ const Navbar = () => {
 
         <ul className={styles.userActions}>
           <li title="profile">
-            <Link to="/login">
-              <img src={icon1} alt="profile" />
-            </Link>
+            {currentUser ? (
+              <Link to="/profile" className={styles.avatarIcon}>
+                <div className={styles.initials}>
+                  {currentUser.name
+                    ? currentUser.name.charAt(0).toUpperCase() +
+                      (currentUser.name.includes(" ")
+                        ? currentUser.name.split(" ")[1].charAt(0).toUpperCase()
+                        : "")
+                    : "U"}
+                </div>
+              </Link>
+            ) : (
+              <Link to="/login">
+                <img src={icon1} alt="profile" />
+              </Link>
+            )}
           </li>
           <li title="my-cart">
             <Link to="/mycart">
@@ -79,7 +101,6 @@ const Navbar = () => {
           </li>
         </ul>
       </nav>
-
 
       {isMenuOpen && <div className={styles.menuOverlay} onClick={closeMenu} />}
     </>

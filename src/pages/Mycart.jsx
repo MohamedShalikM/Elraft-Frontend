@@ -1,9 +1,9 @@
 import { useCart } from "./CartContext.jsx";
-import { Link } from 'react-router-dom';
-import styles from '../css/mycart.module.css';
+import { Link } from "react-router-dom";
+import styles from "../css/mycart.module.css";
 import Navbar from "./Navbar.jsx";
 import Footer from "./Footer.jsx";
-import Checkout from "./Chekout.jsx";
+
 function Mycart() {
   const { cart, updateQty, removeFromCart } = useCart();
 
@@ -21,7 +21,7 @@ function Mycart() {
           <h2>Your cart is empty</h2>
           <p>Start shopping to add items to your cart!</p>
         </div>
-        <Footer/>
+        <Footer />
       </>
     );
   }
@@ -51,21 +51,22 @@ function Mycart() {
 
         {cart.map((item) => (
           <div className={styles.cartItem} key={item.id}>
-            <div className={styles.cartItem1}> 
-            <img src={item.img} alt={item.name} />
-            <div className={styles.itemDetails}>             
-              <h3>{item.name}</h3>
-              <p className={styles.price}>
-                Price: ₹{item.price.toLocaleString("en-IN")}
-              </p>
+            <div className={styles.cartItem1}>
+              <img src={item.img} alt={item.name} />
+              <div className={styles.itemDetails}>
+                <h3>{item.name}</h3>
+                <p className={styles.price}>
+                  Price: ₹{item.price.toLocaleString("en-IN")}
+                </p>
+              </div>
             </div>
-            </div>
-            
 
             <div className={styles.quantityControls}>
               <button
                 className={styles.qtyBtn}
-                onClick={() => updateQty(item.id, (item.qty || 1) - 1)}
+                onClick={() =>
+                  updateQty(item.id, Math.max(1, (item.qty || 1) - 1))
+                }
               >
                 -
               </button>
@@ -75,7 +76,7 @@ function Mycart() {
                 onClick={() => updateQty(item.id, (item.qty || 1) + 1)}
               >
                 +
-              </button>{" "}
+              </button>
               <p className={styles.totalPrice}>
                 Total: ₹{(item.price * (item.qty || 1)).toLocaleString("en-IN")}
               </p>
@@ -90,7 +91,11 @@ function Mycart() {
         ))}
 
         <div className={styles.breadCrumbscartFooter}>
-          <Link to="/Checkout"> <button className={styles.checkoutBtn}>Proceed to Checkout</button></Link>
+          <Link to="/checkout">
+            <button className={styles.checkoutBtn}>
+              Proceed to Checkout (₹{total.toLocaleString("en-IN")})
+            </button>
+          </Link>
         </div>
       </div>
       <Footer />

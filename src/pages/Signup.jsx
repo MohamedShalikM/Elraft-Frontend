@@ -115,6 +115,7 @@ export default function Signup() {
                   type="text"
                   name="name"
                   placeholder="Name"
+                  
                   value={formData.name} // Added value prop
                   onChange={handleChange}
                   className={`${styles.input} ${errors.name ? styles.errorInput : ""}`} // Dynamic class
@@ -137,8 +138,8 @@ export default function Signup() {
                 )}
               </div>
               <div className={styles.inputGroup}>
-                <input
-                  type="tel"
+               <input
+                   type="tel"
                   name="phone"
                   placeholder="Phone Number"
                   value={formData.phone}

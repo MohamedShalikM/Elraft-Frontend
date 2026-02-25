@@ -27,6 +27,7 @@
   gap: 30px;
 }
 
+
 /* Order Summary */
 .orderSummary {
   background: white;
@@ -131,9 +132,95 @@
   background: #ccc;
   cursor: not-allowed;
 }
+.paymentButtons {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  margin: 24px 0;
+  flex-wrap: wrap;
+}
+
+/* Individual payment buttons */
+.payButton {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 14px 20px;
+  border: none;
+  border-radius: 12px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  min-height: 52px;
+  flex: 1;
+  max-width: 180px;
+}
+
+/* Brand-specific colors */
+.phonepe {
+  background: linear-gradient(135deg, #00c851, #00b140);
+  color: white;
+}
+
+.phonepe:hover {
+  background: linear-gradient(135deg, #00d95e, #00c140);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(0, 200, 81, 0.4);
+}
+
+.gpay {
+  background: linear-gradient(135deg, #5f51fb, #4285f4);
+  color: white;
+}
+
+.gpay:hover {
+  background: linear-gradient(135deg, #6b62ff, #5298ff);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(95, 81, 251, 0.4);
+}
+
+
+
+
+/* Icon styling */
+.payButton img {
+  width: 24px;
+  height: 24px;
+  border-radius: 4px;
+}
+.amazonpay {
+  background: linear-gradient(135deg, #13a8e8,#0c6186);
+  /* background-color: #13a8e8; */
+  color:#fff;
+}
+.amazonpay:hover{
+  /* background: linear-gradient(135deg, #6b62ff, #5298ff); */
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px #4cc0f2;
+}
+
+.paytm {
+  background: linear-gradient(135deg, #00b140, #009933);
+  color:#fff;
+}
+
+
+/* MOBILE - Full width stacked */
+@media (max-width: 768px) {
+  .paymentButtons {
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  .payButton {
+    max-width: 100%;
+    justify-content: center;
+  }
+}
 
 /* Payment Buttons */
-.paymentButtons {
+/* .paymentButtons {
   display: flex;
   gap: 12px;
   background: white;
@@ -165,7 +252,7 @@
 .payButton {
   background: linear-gradient(135deg, #b71c43 0%,#b24f68 100%);
   color: white;
-}
+} */
 
 /* Form Styles */
 .checkoutForm {

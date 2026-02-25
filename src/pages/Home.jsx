@@ -30,36 +30,36 @@ import facebook from "../assets/facebook.svg";
 import twitter from "../assets/twitter.svg";
 
 export default function Home() {
-       const [welcomeMsg, setWelcomeMsg] = useState("");
-       const navigate = useNavigate();
+    const [welcomeMsg, setWelcomeMsg] = useState("");
+    const handleCloseToast = () => {
+      setWelcomeMsg(""); 
+    };
 
-       useEffect(() => {
-         // Check if user is logged in
-         const user = localStorage.getItem("user");
-         if (user) {
-           const userData = JSON.parse(user);
-           setWelcomeMsg(`Welcome back, ${userData.name}! 👋`);
-
-           // Auto-hide after 3 seconds
-           const timer = setTimeout(() => {
-             setWelcomeMsg("");
-           }, 3000);
-
-           return () => clearTimeout(timer);
-         }
-       }, []);
+    useEffect(() => {
+      const hasVisited = localStorage.getItem("hasVisitedHomepage");
+       const user = localStorage.getItem("user");
+      if (!hasVisited) {
+        // First time visitor
+        setWelcomeMsg("Welcome to Elraft Fashion! 👋");
+        localStorage.setItem("hasVisitedHomepage", "true");
+      } else if (sessionStorage.getItem("showLoginToast") === "true") {
+        // After login
+        const userData = JSON.parse(user);
+        setWelcomeMsg(`Welcome Back! ${userData.name}` );
+        sessionStorage.removeItem("showLoginToast");
+      }
+    }, []);
   return (
     <>
-      <div className={styles.homePage}>
       {welcomeMsg && (
         <div className={styles.welcomeToast}>
           {welcomeMsg}
-          <button onClick={() => setWelcomeMsg('')}>&times;</button>
+          <button onClick={handleCloseToast}>&times;</button>
         </div>
-      )}</div>
+      )}
 
       <div className={styles.home}>
-        <Navbar/>
+        <Navbar />
         <main>
           <div className={styles.heroContainer}>
             <div className={styles.hero}>
@@ -140,9 +140,11 @@ export default function Home() {
                   <p>{item.cat}</p>
                   <img src={item.img} alt={item.title} />
                   <span>{item.off} off</span>
-                  
-                    <Link to={item.link}><button>Shop now</button></Link>
-                 
+
+                  <Link to={item.link}>
+                    <button>Shop now</button>
+                  </Link>
+
                   {/* <li>
                     <img
                       className={styles.wishlist}
@@ -189,7 +191,7 @@ export default function Home() {
           </section>
         </main>
 
-         <Footer/>
+        <Footer />
       </div>
     </>
   );
