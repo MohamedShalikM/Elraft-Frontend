@@ -69,8 +69,10 @@
 }
 
 .heroContainer{
-  height:34em;
+  min-height: clamp(34rem, 88dvh, 48rem);
   background-color: #fff;
+  position: relative;
+  overflow: hidden;
 }
 .hero{
     display: flex;
@@ -252,7 +254,7 @@
 
 
 .trending{
-  height:40em;
+  min-height: 40rem;
   padding:20px;
   font-family: 'Poppins',sans-serif;
   color:#fff;
@@ -476,7 +478,7 @@
 
 @media (max-width: 1024px) and (min-width: 481px) {
   .heroContainer {
-    height: 28em; /* Shorter on tablets */
+    min-height: 32rem; /* Shorter on tablets */
   }
   .heroTitle {
     top: 20px;
@@ -503,7 +505,7 @@
 @media (max-width: 480px) {
 
   .heroContainer {
-    height: 100vh; /* Full viewport height */
+    min-height: 100dvh; /* Full viewport height */
     position: relative;
   }
  .hero .heroTitle{
