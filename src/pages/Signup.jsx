@@ -109,13 +109,13 @@ export default function Signup() {
               <div className={styles.serverError}>{serverError}</div>
             )}{" "}
             {/* New: server error display */}
-            <form onSubmit={handleSubmit} className={styles.form}>
+            <form onSubmit={handleSubmit} className={styles.form} autoComplete="on">
               <div className={styles.inputGroup}>
                 <input
                   type="text"
                   name="name"
                   placeholder="Name"
-                  
+                  autoComplete="name"
                   value={formData.name} // Added value prop
                   onChange={handleChange}
                   className={`${styles.input} ${errors.name ? styles.errorInput : ""}`} // Dynamic class
@@ -129,6 +129,7 @@ export default function Signup() {
                   type="email"
                   name="email"
                   placeholder="Email"
+                  autoComplete="email"
                   value={formData.email}
                   onChange={handleChange}
                   className={`${styles.input} ${errors.email ? styles.errorInput : ""}`}
@@ -139,9 +140,10 @@ export default function Signup() {
               </div>
               <div className={styles.inputGroup}>
                <input
-                   type="tel"
+                  type="tel"
                   name="phone"
                   placeholder="Phone Number"
+                  autoComplete="tel"
                   value={formData.phone}
                   onChange={handleChange}
                   className={`${styles.input} ${errors.phone ? styles.errorInput : ""}`}
@@ -155,6 +157,7 @@ export default function Signup() {
                   type="password"
                   name="password"
                   placeholder="Password (8+ chars)"
+                  autoComplete="new-password"
                   value={formData.password}
                   onChange={handleChange}
                   className={`${styles.input} ${errors.password ? styles.errorInput : ""}`}
@@ -168,6 +171,7 @@ export default function Signup() {
                   type="password"
                   name="confirmPassword"
                   placeholder="Confirm Password"
+                  autoComplete="new-password"
                   value={formData.confirmPassword}
                   onChange={handleChange}
                   className={`${styles.input} ${errors.confirmPassword ? styles.errorInput : ""}`}
@@ -181,6 +185,7 @@ export default function Signup() {
                   type="text"
                   name="address"
                   placeholder="Address"
+                  autoComplete="street-address"
                   value={formData.address}
                   onChange={handleChange}
                   className={`${styles.input} ${errors.address ? styles.errorInput : ""}`}
