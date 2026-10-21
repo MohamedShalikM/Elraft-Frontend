@@ -7,8 +7,8 @@
   top:0px;
   height: fit-content;
   padding: 40px 8%;
-  background:#000;
-  color: #fdf2f8;
+  background:#141d21;
+  color: #fff;
   font-family: "Poppins", system-ui, sans-serif;
 }
 
@@ -23,9 +23,10 @@
 }
 
 .footerBrand h2 {
+  font-family:  "Edu NSW ACT Cursive", cursive;
   font-size: 28px;
   letter-spacing: 2px;
-  text-transform: uppercase;
+  /* text-transform: uppercase; */
 }
 
 .footerBrand p {
@@ -51,7 +52,7 @@
 .footerLinks .col a {
   display: block;
   font-size: 14px;
-  color: #ffe4f0;
+  color: #fff;
   text-decoration: none;
   margin-bottom: 6px;
   opacity: 0.85;

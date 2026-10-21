@@ -2,7 +2,8 @@ import React, { useEffect, useState } from "react";
 import styles from "../css/products.module.css";
 import { Link } from "react-router-dom";
 import { useCart } from "./CartContext";
-
+import CTAButton from "./CTAbutton";
+import style from "../css/kidsHero.module.css";
 
 /* icons */
 import icon1 from "../assets/icon1.svg";
@@ -82,8 +83,17 @@ export default function Kids() {
 
   return (
     <>
-      <Navbar />
-
+    <div className={style.kidsContainer}>
+         <Navbar/>
+        <div className={style.hero}>
+          <h2>THE KIDS EDIT</h2>
+          <p>Discover everyday essentials, elevated streetwear, and timeless styles.</p>
+          <div className={style.ctaContainer} style={{ display: 'flex', justifyContent: 'center', width: '100%' }}>
+              <CTAButton href="">Shop New Arrivals</CTAButton>
+          </div>
+        </div>
+    </div>
+    
       <div className={styles.pageHeader}>
         <div className={styles.breadcrumb}>
           <Link to="/">Home</Link> &gt; <span>Kids</span>

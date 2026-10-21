@@ -25,20 +25,6 @@
   transform: translateY(-5px);
 }
 
-.avatar {
-  width: 100px;
-  height: 100px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin: 0 auto 20px;
-  font-size: 2rem;
-  font-weight: bold;
-  color: white;
-  border: 4px solid white;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-}
 
 /* Main profile name (keep your existing) */
 .title, .name {
@@ -162,6 +148,11 @@
   font-size: 1.2rem;
   color: white;
 }
+
+
+
+
+
 
 /* Responsive */
 @media (max-width: 768px) {

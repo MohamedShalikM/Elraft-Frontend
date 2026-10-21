@@ -18,8 +18,10 @@ function Mycart() {
             </Link>{" "}
             &gt; <span>Cart</span>
           </div>
+          <div className={styles.headers}>
           <h2>Your cart is empty</h2>
           <p>Start shopping to add items to your cart!</p>
+          </div>
         </div>
         <Footer />
       </>

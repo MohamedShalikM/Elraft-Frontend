@@ -1,8 +1,9 @@
 import React, { useState } from "react";
-import { Link, useNavigate } from "react-router-dom"; // Added useNavigate
+import { Link, useNavigate } from "react-router-dom"; 
 import styles from "../css/login.module.css";
 import Navbar from "./Navbar";
 import Footer from "./Footer";
+import GoogleIcon from "../assets/GoogleIcon.png"
 
 export default function Login() {
   const API_URL = import.meta.env.VITE_API_URL || "http://localhost:5000";
@@ -14,6 +15,31 @@ export default function Login() {
   const [isLoading, setIsLoading] = useState(false);
   const [serverError, setServerError] = useState("");
   const navigate = useNavigate();
+  
+  const googleAuth = async (googleCredential) => {
+  try {
+    const res = await fetch(`${API_URL}/api/auth/google`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        credential: googleCredential,
+      }),
+    });
+
+    const data = await res.json();
+
+    if (!res.ok) {
+      throw new Error(data.message || "Google authentication failed");
+    }
+
+    console.log("Google login successful:", data);
+  } catch (err) {
+    console.error("Google authentication error:", err);
+  }
+};
+
 
   const handleChange = (e) => {
     setFormData({
@@ -81,11 +107,17 @@ export default function Login() {
       <Navbar />
       <div className={styles.loginPage}>
         <div className={styles.container}>
+          
           <div className={styles.formCard}>
-            <h1 className={styles.title}>Welcome</h1>
+          <h1 className={styles.title}>Welcome</h1>
             <p className={styles.subtitle}>
-              Sign in to your Raftel Fashion account
+              Log in to your Raftel Fashion account
             </p>
+            <div className={styles.google}>
+                  <button onClick={() => {window.location.href = "http://localhost:5000/auth/google";}}><img src={GoogleIcon} alt="google-icon" />
+                  <h2>Continue With Google</h2></button>
+                  <h2 className={styles.divider}>------------------- or -------------------</h2>
+              </div>
             {serverError && (
               <div className={styles.serverError}>{serverError}</div>
             )}
@@ -94,6 +126,8 @@ export default function Login() {
               className={styles.form}
               autoComplete="on"
             >
+              
+
               <div className={styles.inputGroup}>
                 <input
                   type="email"
@@ -127,7 +161,7 @@ export default function Login() {
                 disabled={isLoading}
                 className={styles.submitBtn}
               >
-                {isLoading ? "Signing In..." : "Sign In"}
+                {isLoading ? "Logging In..." : "Log In"}
               </button>
             </form>
             <div className={styles.signupLink}>

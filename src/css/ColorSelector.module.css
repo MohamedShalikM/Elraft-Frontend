@@ -1,0 +1,35 @@
+.wrapper {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+}
+
+.dots {
+    display: flex;
+    gap: 10px;
+}
+
+.dot {
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    border: 2px solid rgba(255, 255, 255, 0.25);
+    cursor: pointer;
+    padding: 0;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.dot:hover {
+    transform: scale(1.15);
+}
+
+.active {
+    box-shadow: 0 0 0 2px #090e10, 0 0 0 3px #fff;
+}
+
+.label {
+    font-size: 13px;
+    letter-spacing: 1px;
+    color: #8a9a9f;
+    text-transform: uppercase;
+}

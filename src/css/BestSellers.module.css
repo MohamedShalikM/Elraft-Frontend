@@ -1,0 +1,342 @@
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Raleway:wght@300;500;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap'); 
+.BestSellers {
+     --accent: #9d4edd;  
+    --bg: #0d1417;
+    --card: #11191c;
+    --muted: #8a9a9f;
+
+    font-family: 'Raleway', sans-serif;
+    color: #fff;
+    padding: 60px 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* background:
+        radial-gradient(circle at 50% 0%, #c4572f, transparent 55%),
+        var(--bg); */
+        background-color: #090e10;
+}
+
+.eyebrow {
+    color: yellow;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 4px;
+    margin-bottom: 6px;
+}
+
+.title {
+    font-family:'Raleway',sans-serif;
+    /* font-size: clamp(48px, 9vw, 84px);
+     */
+     font-size: 50px;
+    font-weight: 800;
+    letter-spacing: 2px;
+    line-height: 1;
+    text-align: center;
+}
+
+.title span {
+    /* -webkit-text-stroke: 1.5px var(--accent); */
+    margin-left: 12px;
+}
+
+.desc {
+    color: var(--muted);
+    text-align: center;
+    max-width: 420px;
+    margin: 14px 0 40px;
+}
+
+.card {
+    width: 100%;
+    background: var(--card);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 20px;
+    overflow: hidden;
+    transition: transform 0.35s ease, box-shadow 0.35s ease, border-color 0.35s ease;
+}
+
+.card:hover {
+    transform: translateY(-8px);
+    border-color: var(--accent);
+    /* box-shadow: 0 20px 50px #c4572f; */
+}
+/* NEW: three cards in a row */
+.grid {
+    display: grid;
+    grid-template-columns: repeat(3, 320px);
+    gap: 28px;
+    justify-content: center;
+}
+
+@media (max-width: 1100px) {
+    .grid { grid-template-columns: repeat(2, 320px); }
+}
+
+@media (max-width: 720px) {
+    .grid { grid-template-columns: minmax(0, 320px); }
+}
+
+
+/* CHANGED: use the theme accent instead of yellow */
+.eyebrow { color: var(--accent); }
+
+.rank {
+    background: var(--accent);
+    color: #fff;
+}
+
+
+.name {
+    font-family: 'Poppins', sans-serif;
+    font-size: 15px;
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+
+.badge {
+    font-family: 'Poppins', sans-serif;
+    font-size: 13px;
+    font-weight: 800;
+    letter-spacing: 1px;
+}
+
+/* the fade animation, if you haven't added it yet */
+.fade { animation: fadeIn 0.4s ease; }
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+.media {
+    position: relative;
+    overflow: hidden;
+}
+
+.media img {
+    display: block;
+    width: 100%;
+    height: 280px;
+    object-fit: cover;
+    object-position: top;
+    transition: transform 0.6s ease;
+}
+
+.card:hover .media img {
+    transform: scale(1.08);
+}
+
+.rank {
+    position: absolute;
+    top: 14px;
+    left: 14px;
+    background: black;
+    color: white;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    font-family: 'Poppins',sans-serif;
+    padding: 6px 10px;
+    border-radius: 999px;
+}
+
+/* .badge {
+    position: absolute;
+    bottom: 14px;
+    right: 14px;
+    background: #000;
+    color: #fff;
+    font-family: 'Poppins', sans-serif;
+    font-size: 12px;
+    letter-spacing: 1px;
+    padding: 2px 6px;
+    border-radius:999px ;
+    /* transform: rotate(-4deg); 
+} */
+
+.info {
+    padding: 18px 20px 22px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.name, .badge {
+    font-family: 'Poppins', sans-serif;
+    font-size: 18px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+}
+
+.rating {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 14px;
+    font-family: 'Poppins',sans-serif;
+}
+
+.stars {
+    color: var(--accent);
+    letter-spacing: 2px;
+}
+
+.reviews {
+    color: var(--muted);
+}
+
+.price {
+    display: flex;
+    align-items: baseline;
+    gap: 12px;
+}
+
+.now {
+    font-size: 18px;
+    font-weight: 400;
+    color: var(--accent);
+    font-family: 'Poppins',sans-serif;
+}
+
+.dashed {
+    color: var(--muted);
+    text-decoration: line-through;
+}
+
+.promoBanner{
+    padding: 10px;
+    margin-top: 100px;
+    display: flex;
+
+    
+}
+.promoBanner .promo1{
+  object-fit: cover;
+  width:800px;
+}
+.promoBanner .promo2{
+    object-fit: cover;
+    width:450px;
+    object-position: left;
+}
+/* ===== Tablet (≤ 1100px) ===== */
+@media (max-width: 1100px) {
+  .BestSellers {
+    padding: 50px 24px;
+  }
+
+  .grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    width: 100%;
+    max-width: 700px;
+    gap: 24px;
+  }
+
+  .promoBanner {
+    width: 100%;
+    box-sizing: border-box;
+    margin-top: 70px;
+    gap: 10px;
+  }
+
+  /* replace the fixed 800px / 450px widths with proportional ones */
+  .promoBanner .promo1 {
+    flex: 1.7 1 0;
+    min-width: 0;
+    width: auto;
+  }
+
+  .promoBanner .promo2 {
+    flex: 1 1 0;
+    min-width: 0;
+    width: auto;
+  }
+}
+
+/* ===== Mobile (≤ 720px) ===== */
+@media (max-width: 720px) {
+  .BestSellers {
+    padding: 40px 16px;
+  }
+
+  .title {
+    font-size: 34px;
+    letter-spacing: 1px;
+  }
+
+  .desc {
+    font-size: 14px;
+    max-width: 320px;
+    margin: 12px 0 28px;
+  }
+
+  .grid {
+    grid-template-columns: minmax(0, 1fr);
+    max-width: 360px;
+    gap: 20px;
+  }
+
+  .media img {
+    height: 300px;
+  }
+
+  .promoBanner {
+    flex-direction: column;
+    padding: 0;
+    margin-top: 50px;
+    gap: 14px;
+  }
+
+  .promoBanner .promo1,
+  .promoBanner .promo2 {
+    width: 100%;
+    height: auto;
+    flex: none;
+    object-position: center;
+  }
+}
+
+/* ===== Small mobile (≤ 480px) ===== */
+@media (max-width: 480px) {
+  .title {
+    font-size: 28px;
+  }
+
+  .title span {
+    margin-left: 8px;
+  }
+
+  .eyebrow {
+    font-size: 11px;
+    letter-spacing: 3px;
+  }
+
+  .media img {
+    height: 260px;
+  }
+
+  .info {
+    padding: 16px 16px 20px;
+  }
+
+  .name,
+  .badge {
+    font-size: 16px;
+    letter-spacing: 1px;
+  }
+
+  .rating {
+    font-size: 13px;
+  }
+}
+
+/* ===== Touch devices: no sticky hover effects ===== */
+@media (hover: none) {
+  .card:hover {
+    transform: none;
+    border-color: rgba(255, 255, 255, 0.1);
+  }
+
+  .card:hover .media img {
+    transform: none;
+  }
+}

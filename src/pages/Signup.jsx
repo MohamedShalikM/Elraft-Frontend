@@ -3,16 +3,15 @@ import { Link, useNavigate } from "react-router-dom"; // Added useNavigate
 import styles from "../css/signup.module.css";
 import Navbar from "./Navbar";
 import Footer from "./Footer";
+import GoogleIcon from "../assets/GoogleIcon.png"
 
 export default function Signup() {
   const API_URL = import.meta.env.VITE_API_URL || "http://localhost:5000";
   const [formData, setFormData] = useState({
     name: "",
     email: "",
-    phone: "",
     password: "",
     confirmPassword:"",
-    address: "",
   });
   const [errors, setErrors] = useState({}); // Uncommented and fixed
   const [isLoading, setIsLoading] = useState(false); // Uncommented
@@ -37,14 +36,11 @@ export default function Signup() {
     if (!formData.email) newErrors.email = "Email is required";
     else if (!/\S+@\S+\.\S+/.test(formData.email))
       newErrors.email = "Email is invalid";
-    if (!formData.phone || !/^\d{10}$/.test(formData.phone.replace(/\D/g, "")))
-      newErrors.phone = "Valid 10-digit phone required";
     if (!formData.password) newErrors.password = "Password is required";
     else if (formData.password.length < 8)
       newErrors.password = "Password must be at least 8 characters";
     if (formData.password !== formData.confirmPassword)
       newErrors.confirmPassword = "Passwords do not match";
-    if (!formData.address.trim()) newErrors.address = "Address is required";
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
   };
@@ -62,10 +58,8 @@ export default function Signup() {
          body: JSON.stringify({
            name: formData.name,
            email: formData.email,
-           phone: formData.phone,
            password: formData.password,
            confirmPassword: formData.confirmPassword,
-           address: formData.address,
          }),
        });
       const data = await res.json();
@@ -81,10 +75,8 @@ export default function Signup() {
       setFormData({
         name: "",
         email: "",
-        phone: "",
         password: "",
         confirmPassword:"",
-        address: "",
       });
       navigate("/login"); // Redirect to login after success
     } catch (error) {
@@ -99,12 +91,16 @@ export default function Signup() {
     <>
       <Navbar />
       <div className={styles.signupPage}>
-        <div className={styles.container}>
+        <div className={styles.container}>          
           <div className={styles.formCard}>
             <h1 className={styles.title}>Join Raftel Fashion</h1>
             <p className={styles.subtitle}>
               Create your account for exclusive styles
             </p>
+            <div className={styles.google}>
+                <button><img src={GoogleIcon} alt="" /><h2>Continue With Google</h2></button>
+                <h2 className={styles.divider}>------------------- or -------------------</h2>
+            </div>
             {serverError && (
               <div className={styles.serverError}>{serverError}</div>
             )}{" "}
@@ -138,20 +134,7 @@ export default function Signup() {
                   <span className={styles.error}>{errors.email}</span>
                 )}
               </div>
-              <div className={styles.inputGroup}>
-               <input
-                  type="tel"
-                  name="phone"
-                  placeholder="Phone Number"
-                  autoComplete="tel"
-                  value={formData.phone}
-                  onChange={handleChange}
-                  className={`${styles.input} ${errors.phone ? styles.errorInput : ""}`}
-                />
-                {errors.phone && (
-                  <span className={styles.error}>{errors.phone}</span>
-                )}
-              </div>
+            
               <div className={styles.inputGroup}>
                 <input
                   type="password"
@@ -180,20 +163,6 @@ export default function Signup() {
                   <span className={styles.error}>{errors.confirmPassword}</span>
                 )}
               </div>
-              <div className={styles.inputGroup}>
-                <input
-                  type="text"
-                  name="address"
-                  placeholder="Address"
-                  autoComplete="street-address"
-                  value={formData.address}
-                  onChange={handleChange}
-                  className={`${styles.input} ${errors.address ? styles.errorInput : ""}`}
-                />
-                {errors.address && (
-                  <span className={styles.error}>{errors.address}</span>
-                )}
-              </div>
               <button
                 type="submit"
                 disabled={isLoading}
@@ -201,11 +170,13 @@ export default function Signup() {
               >
                 {isLoading ? "Creating Account..." : "Sign Up"}
               </button>
+              
+
             </form>
             <div className={styles.loginLink}>
               Already have an account?{" "}
               <Link to="/login" className={styles.link}>
-                Sign In
+                Log In
               </Link>
             </div>
           </div>

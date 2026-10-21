@@ -10,7 +10,7 @@ const Footer = () => {
     <footer className={styles.elraftFooter}>
               <div className={styles.footerInner}>
                 <div className={styles.footerBrand}>
-                  <h2>ElRaft</h2>
+                  <h2>Raftel Fashion</h2>
                   <p>Fashion that fits your everyday story.</p>
                 </div>
     
@@ -24,22 +24,22 @@ const Footer = () => {
     
                   <div className={styles.col}>
                     <h4>Help</h4>
-                    <Link to="#">Contact</Link>
-                    <Link to="#">Returns</Link>
-                    <Link to="#">Shipping</Link>
-                    <Link to="#">FAQ</Link>
+                    <Link to="">Contact</Link>
+                    <Link to="">Returns</Link>
+                    <Link to="">Shipping</Link>
+                    <Link to="">FAQ</Link>
                   </div>
     
                   <div className={styles.col}>
                     <h4>Follow</h4>
                     <div className={styles.socialRow}>
-                      <Link  to="#">
+                      <Link  to="">
                         <img src={instagram} alt="instagram" />
                       </Link>
-                      <Link  to="#">
+                      <Link  to="">
                         <img src={facebook} alt="facebook" />
                       </Link>                
-                      <Link  to="#">
+                      <Link  to="">
                         <img src={twitter} alt="twitter" />
                       </Link>
                     </div>

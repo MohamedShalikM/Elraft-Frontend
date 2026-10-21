@@ -1,0 +1,46 @@
+
+.menContainer {
+  min-height: 100vh;                       /* was height: 100vh */
+  display: flex;
+  flex-direction: column;                  /* no centering: sections stack naturally */
+  font-family: 'Raleway', sans-serif;
+  color: #fff;
+  background-image:
+    linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
+    url('../assets/HeroImg3.webp');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;            /* image stays put so the glass blur always has something behind it */
+}
+
+.hero {
+  min-height: 100vh;                       /* hero fills the first screen */
+  padding: 100px 20px 40px;                /* top padding clears the navbar */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.hero h2,
+.hero p,
+.hero .ctaContainer {
+  padding: 10px;
+  color: #fff;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.hero h2 {
+  font-family: 'Playfair', serif;
+  font-size: clamp(2.2rem, 6vw, 3.75rem);
+  letter-spacing: 1px;
+  margin: 0;
+}
+
+.hero p {
+  font-size: 1.25rem;
+  max-width: 400px;
+  width: 100%;
+  margin: 0;
+}

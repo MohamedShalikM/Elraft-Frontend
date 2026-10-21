@@ -2,18 +2,21 @@ import React, { useEffect, useState } from "react";
 import styles from "../css/products.module.css";
 import {Link} from 'react-router-dom';
 import { useCart } from "./CartContext";
+import style from "../css/womenHero.module.css";
 /* icons */
 import icon1 from "../assets/icon1.svg";
 import icon2 from "../assets/icon2.svg";
 import icon3 from "../assets/icon3.svg";
-
+import CTAButton from "./CTAbutton";
 /* topwear */
 import women1 from "../assets/women1.avif";
 import women2 from "../assets/women2.avif";
 import women3 from "../assets/women3.avif";
 import women4 from "../assets/women4.avif";
 import arr3 from "../assets/arr3.avif";
-
+import Carousal1 from "../assets/Carousal1.webp";
+import Carousal2 from "../assets/Carousal2.webp";
+import Carousal3 from "../assets/Carousal3.webp";
 /* bottomwear */
 import women5 from "../assets/women5.avif";
 import women6 from "../assets/women6.avif";
@@ -31,25 +34,28 @@ import Navbar from "./Navbar";
  
 
 const womenTopwear = [
-  { id: 12, name: "Floral Blouse", price: 1199, img: women1 },
-  { id: 13, name: "Satin Crop Top", price: 899, img: women2 },
-  { id: 14, name: "Off-Shoulder Top", price: 999, img: women3 },
-  { id: 15, name: "Silk Shirt", price: 1599, img: women4 },
-  { id: 16, name: "Floral Shrug", price: 1800, img: arr3 },
+  { id: 1, name: "Floral Blouse", price: 1199, img: women1 },
+  { id: 2, name: "Satin Crop Top", price: 899, img: women2 },
+  { id: 3, name: "Off-Shoulder Top", price: 999, img: women3 },
+  { id: 4, name: "Silk Shirt", price: 1599, img: women4 },
+  { id: 5, name: "Floral Shrug", price: 1800, img: arr3 },
+  { id: 6, name: "Noir Luxe - Women's Faux Leather Moto Jacket", price: 2499, img: Carousal1 },
+  { id: 7, name: "Aspen Longline Wool-Blend Overcoat For Women", price: 2999, img: Carousal2 },
+  { id: 8, name: "Jurassic Park Vintage Washed Graphic Oversized Tee", price: 799, img: Carousal3 },
 ];
 
 const womenBottomwear = [
-  { id: 17, name: "High Waist Jeans", price: 1799, img: women5 },
-  { id: 18, name: "Palazzo Pants", price: 1399, img: women6 },
-  { id: 19, name: "Midi Skirt", price: 1299, img: women7 },
-  { id: 20, name: "Leggings", price: 799, img: women8 },
+  { id: 9, name: "High Waist Jeans", price: 1799, img: women5 },
+  { id: 10, name: "Palazzo Pants", price: 1399, img: women6 },
+  { id: 11, name: "Midi Skirt", price: 1299, img: women7 },
+  { id: 12, name: "Leggings", price: 799, img: women8 },
 ];
 
 const womenFootwear = [
-  { id: 25, name: "Heeled Sandals", price: 1399, img: women9 },
-  { id: 26, name: "Block Heel Pumps", price: 1699, img: women10 },
-  { id: 27, name: "Wedge Espadrilles", price: 1199, img: women11 },
-  { id: 28, name: "Flat Ballet Shoes", price: 899, img: women12 },
+  { id: 13, name: "Heeled Sandals", price: 1399, img: women9 },
+  { id: 14, name: "Block Heel Pumps", price: 1699, img: women10 },
+  { id: 15, name: "Wedge Espadrilles", price: 1199, img: women11 },
+  { id: 16, name: "Flat Ballet Shoes", price: 899, img: women12 },
 ];
 
 const productMap = {
@@ -76,8 +82,16 @@ export default function Women() {
 
   return (
     <>
-      <Navbar />
-
+         <div className={style.womenContainer}>
+         <Navbar/>
+        <div className={style.hero}>
+          <h2>THE WOMEN'S EDIT</h2>
+          <p>Discover everyday essentials, elevated streetwear, and timeless styles.</p>
+          <div className={style.ctaContainer} style={{ display: 'flex', justifyContent: 'center', width: '100%' }}>
+              <CTAButton href="">Shop New Arrivals</CTAButton>
+          </div>
+        </div>
+    </div>
       <div className={styles.pageHeader}>
         <div className={styles.breadcrumb}>
           <Link to="/">Home</Link> &gt; <span>Women</span>

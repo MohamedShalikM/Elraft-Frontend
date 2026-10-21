@@ -1,8 +1,8 @@
 import styles from "../css/home.module.css";
 
 import { Link,useNavigate } from "react-router-dom";
-import {useState,useEffect} from 'react';
-
+import {useState,useEffect,useRef, useLayoutEffect} from 'react';
+import CTAButton from "./CTAbutton.jsx";
 import Navbar from "./Navbar";
 import Footer from "./Footer";
 
@@ -25,12 +25,58 @@ import arr2 from "../assets/arr2.avif";
 import arr3 from "../assets/arr3.avif";
 import arr4 from "../assets/arr4.avif";
 
+// import { Link } from "react-router-dom";
+
+// import icon1 from "../assets/icon1.svg";
+// import icon3 from "../assets/icon3.svg";
+
+import { useAuth } from "./AuthContext.jsx";
+
 import instagram from "../assets/instagram.svg";
 import facebook from "../assets/facebook.svg";
 import twitter from "../assets/twitter.svg";
+import Arrivals from "./Arrivals.jsx";
+import Category from "./Category.jsx";
+import BestSellers from "./BestSellers.jsx";
+import CustomerReviews from "./CustomerReviews.jsx";
 
 export default function Home() {
+    const [isMenuOpen, setIsMenuOpen] = useState(false);
+    const {loading} = useAuth();
+    const navRef = useRef(null);
+  
+    // Prevent page scrolling when mobile menu is open
+    useLayoutEffect(() => {
+      if (isMenuOpen) {
+        document.body.style.overflow = "hidden";
+      } else {
+        document.body.style.overflow = "unset";
+      }
+  
+      return () => {
+        document.body.style.overflow = "unset";
+      };
+    }, [isMenuOpen]);
+  
+    const toggleMenu = (e) => {
+      e.stopPropagation();
+      setIsMenuOpen((prev) => !prev);
+    };
+  
+    const closeMenu = () => {
+      setIsMenuOpen(false);
+    };
+  
+    // Create user initials
+    // const initials = user?.name
+    //   ? user.name
+    //       .split(" ")
+    //       .map((word) => word.charAt(0).toUpperCase())
+    //       .slice(0, 2)
+    //       .join("")
+    //   : "U";
     const [welcomeMsg, setWelcomeMsg] = useState("");
+    const [user, setUser] = useState(null);
     const handleCloseToast = () => {
       setWelcomeMsg(""); 
     };
@@ -49,149 +95,65 @@ export default function Home() {
         sessionStorage.removeItem("showLoginToast");
       }
     }, []);
+
+const getCurrentUser = async () => {
+    try {
+      const res = await fetch("http://localhost:5000/api/auth/me", {
+        credentials: "include",
+      });
+
+      if (!res.ok) {
+        return;
+      }
+
+      const data = await res.json();
+
+      setUser(data.user);
+
+      // Show welcome message
+      setWelcomeMsg(`Welcome Back! ${data.user.name}`);
+    } catch (err) {
+      console.error("Failed to get current user:", err);
+    }
+
+  };
+  useEffect(() => {
+  getCurrentUser();
+}, []);
+
+
+  
+
   return (
     <>
       {welcomeMsg && (
-        <div className={styles.welcomeToast}>
-          {welcomeMsg}
-          <button onClick={handleCloseToast}>&times;</button>
-        </div>
-      )}
+      <div className={styles.welcomeToast}>
+      <p>{welcomeMsg}</p>
+      <button onClick={handleCloseToast}>&times;</button>
+      </div>
+    )}
 
-      <div className={styles.home}>
-        <Navbar />
-        <main>
-          <div className={styles.heroContainer}>
-            <div className={styles.hero}>
-              <div className={styles.dots}>
-                <h2>. . . .</h2>
-                <h2>. . . .</h2>
-              </div>
+    <div className={styles.home}>
+      <Navbar />
 
-              <h1 className={styles.heroTitle}>
-                FASHION
-                <span style={{ color: "#b24f68", paddingLeft: "10px" }}>
-                  SALE
-                </span>
-              </h1>
-
-              <p className={styles.heroDesc}>
-                UP TO <span style={{ fontWeight: "bold" }}>50%</span> OFF
-              </p>
-
-              <a href="#trnd" className={styles.trnd}>
-                <button className={styles.buyBtn}>Buy Now</button>
-              </a>
-            </div>
-
-            <div className={styles.roundedShapes}>
-              <div></div>
-              <div></div>
-            </div>
-            <div className={styles.heroImgs}>
-              <img src={Heroimg1} alt="hero" />
-              <img className={styles.Heroimg2} src={Heroimg2} alt="hero" />
-            </div>
-            <div className={styles.rectangledShapes}>
-              <div></div>
-              <div></div>
-            </div>
-            <div className={styles.decorations}>
-              <img src={pattern} alt="pattern" className={styles.pattern1} />
-              <img src={pattern} alt="pattern" className={styles.pattern2} />
-            </div>
-          </div>
-
-          <div className={styles.trending} id="trnd">
-            <h1>Trending Now</h1>
-            <div className={styles.imageContainer}>
-              {[
-                {
-                  title: "Sports T-shirts",
-                  cat: "Mens Topwear",
-                  img: men4,
-                  off: "50%",
-                  link: "/men",
-                },
-                {
-                  title: "Silk Shirt",
-                  cat: "Womens Topwear",
-                  img: women4,
-                  off: "60%",
-                  link: "/women",
-                },
-                {
-                  title: "Printed Frocks",
-                  cat: "Girls Dresses",
-                  img: kids4,
-                  off: "70%",
-                  link: "/kids",
-                },
-                {
-                  title: "Boys Formal Suit",
-                  cat: "Boys Dresses",
-                  img: kids8,
-                  off: "50%",
-                  link: "/kids",
-                },
-              ].map((item, i) => (
-                <div className={styles.image} key={i}>
-                  <h1>{item.title}</h1>
-                  <p>{item.cat}</p>
-                  <img src={item.img} alt={item.title} />
-                  <span>{item.off} off</span>
-
-                  <Link to={item.link}>
-                    <button>Shop now</button>
-                  </Link>
-
-                  {/* <li>
-                    <img
-                      className={styles.wishlist}
-                      src={icon4}
-                      alt="wishlist"
-                    />
-                  </li> */}
-                </div>
-              ))}
-            </div>
-          </div>
-
-          <section className={styles.newArrivals}>
-            <h2>New Arrivals</h2>
-            <div className={styles.arrivalsGrid}>
-              {[
-                { name: "Shirt", price: "380rs", img: arr1, link: "/men" },
-                { name: "Blazer", price: "2000rs", img: arr2, link: "/men" },
-                {
-                  name: "Floral Shrug",
-                  price: "1800rs",
-                  img: arr3,
-                  link: "/women",
-                },
-                {
-                  name: "Oversized Hoodie",
-                  price: "800rs",
-                  img: arr4,
-                  link: "/men",
-                },
-              ].map((p, i) => (
-                <div className={styles.productCard} key={i}>
-                  <div className={styles.productImage}>
-                    <img src={p.img} alt={p.name} />
-                  </div>
-                  <div className={styles.productInfo}>
-                    <h3>{p.name}</h3>
-                    <p>{p.price}</p>
-                    <Link to={p.link}>View Product</Link>
-                  </div>
-                </div>
-              ))}
+      <main>
+        <section className={styles.heroContainer}>
+          <section className={styles.hero}>
+            <h1>Elevate Your Style</h1>
+            <p>Discover pieces designed for your everyday expression.</p>
+            <div style={{display: "flex",justifyContent: "center",width: "100%",}}>
+              <CTAButton href="#category">
+                Explore Collections
+              </CTAButton>
             </div>
           </section>
-        </main>
-
-        <Footer />
+        </section>
+        <Arrivals />
+        <Category />
+        <BestSellers />
+        <CustomerReviews />
+      </main>
+      <Footer />
       </div>
     </>
   );

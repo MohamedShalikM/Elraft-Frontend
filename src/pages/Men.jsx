@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { useCart } from "./CartContext";
+import CTAButton from "./CTAbutton";
 import styles from "../css/products.module.css";
+import style from "../css/menHero.module.css";
 import { Link } from 'react-router-dom';
 import men1 from "../assets/men1.webp";
 import men2 from "../assets/men2.webp";
@@ -17,6 +19,11 @@ import men13 from "../assets/men13.avif";
 import arr1 from "../assets/arr1.avif";
 import arr2 from "../assets/arr2.avif";
 import arr4 from "../assets/arr4.avif";
+import Carousal4 from "../assets/Carousal4.webp";
+import Carousal5 from "../assets/Carousal5.webp";
+import Carousal6 from "../assets/Carousal6.webp";
+import Carousal7 from "../assets/Carousal7.webp";
+import Carousal8 from "../assets/Carousal8.webp";
 import Navbar from "./Navbar";
 import Footer from "./Footer";
 
@@ -28,14 +35,19 @@ const mensTopwear = [
   { id: 4, name: "Denim Shirt", price: 1599, img: men4 },
   { id: 5, name: "Solid Shirt", price: 380, img: arr1 },
   { id: 6, name: "Blazer", price: 2000, img: arr2 },
-  { id: 7, name: "Oversized Hoodie", price: 800, img: arr4}
+  { id: 7, name: "Oversized Hoodie", price: 800, img: arr4},
+  { id: 8, name: "Cloud Grey Essential Oversized Hoodie - Unisex", price: 1299, img: Carousal4},
+  { id: 9, name: "Midnight Colorblock - Dual-Tone Hoodie", price: 1399, img: Carousal5},
+  { id: 10, name: "Onyx Black Satin Party Shirt For Men - Slim Fit", price: 1199, img: Carousal6},
+  { id: 11, name: "Raven - Men's Faux Leather Racer Jacket", price: 2799, img: Carousal8},
 ];
 
 const mensBottomwear = [
   { id: 8, name: "Slim Jeans", price: 1999, img: men6 },
   { id: 9, name: "Cargo Pants", price: 1599, img: men7 },
   { id: 10, name: "Chinos", price: 1399, img: men8 },
-  { id: 11, name: "Joggers", price: 1099, img: men9 }
+  { id: 11, name: "Joggers", price: 1099, img: men9 },
+  { id: 12, name: "Indigo Wash Straight-Fit Denim Jeans For Men", price: 1499, img: Carousal7 },
 ];
 
 const mensFootwear = [
@@ -67,10 +79,19 @@ export default function Men() {
     setProducts(list);
   }, [category, sort]);
 
+  
   return (
     <>
-      <Navbar/>
-
+      <section className={style.menContainer}>
+        <Navbar/>
+       <div className={style.hero}>
+          <h2>THE MEN'S EDIT</h2>
+          <p>Discover everyday essentials, elevated streetwear, and timeless styles.</p>
+          <div className={style.ctaContainer} style={{ display: 'flex', justifyContent: 'center', width: '100%' }}>
+              <CTAButton href="">Shop New Arrivals</CTAButton>
+          </div>
+        </div>
+        </section>
         <div className={styles.pageHeader}>
         <div className={styles.breadcrumb}>
           <Link to="/">Home</Link> &gt; <span>Men</span>

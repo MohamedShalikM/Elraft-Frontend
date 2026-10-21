@@ -8,18 +8,23 @@
   width:100%;
   margin: 2 auto;
   padding: 2rem 1rem;
-  min-height: 40vh;
+  min-height: 100vh;
+  background-color: #090e10;
 }
 
 .breadCrumbs {
   /* padding:10px; */
+  margin-top:100px;
   margin-bottom: 1.5rem;
   font-size: 0.9rem;
   color: #666;
 }
+.headers{
+  margin-top: 150px;
+}
 
 .link {
-  color: #b71c43;
+  color: #fff;
   text-decoration: none;
   font-weight: 500;
 }
