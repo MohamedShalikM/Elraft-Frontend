@@ -15,6 +15,8 @@ Set these variables on the Render backend:
 
 The frontend and backend use cross-site session cookies in production, so both public URLs must use HTTPS. If you use a Vercel preview domain, add its origin to Render's `FRONTEND_URL` (comma-separated origins are accepted) and allow its callback destination in your deployment setup.
 
+Do not set `FRONTEND_URL` or `CALLBACK_URL` to localhost on Render. The backend now detects localhost values when it has a Render service URL and falls back to the deployed frontend and Render callback URL, but Google Cloud must still authorize the callback URL shown by your Render service.
+
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
 Currently, two official plugins are available:
