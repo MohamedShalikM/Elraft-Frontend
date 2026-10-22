@@ -42,7 +42,7 @@ import CustomerReviews from "./CustomerReviews.jsx";
 
 export default function Home() {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
-    const {loading} = useAuth();
+    const {loading, user} = useAuth();
     const navRef = useRef(null);
   
     // Prevent page scrolling when mobile menu is open
@@ -76,50 +76,22 @@ export default function Home() {
     //       .join("")
     //   : "U";
     const [welcomeMsg, setWelcomeMsg] = useState("");
-    const [user, setUser] = useState(null);
     const handleCloseToast = () => {
       setWelcomeMsg(""); 
     };
 
     useEffect(() => {
+      if (loading) return;
       const hasVisited = localStorage.getItem("hasVisitedHomepage");
-       const user = localStorage.getItem("user");
       if (!hasVisited) {
         // First time visitor
         setWelcomeMsg("Welcome to Elraft Fashion! 👋");
         localStorage.setItem("hasVisitedHomepage", "true");
       } else if (sessionStorage.getItem("showLoginToast") === "true") {
-        // After login
-        const userData = JSON.parse(user);
-        setWelcomeMsg(`Welcome Back! ${userData.name}` );
+        if (user?.name) setWelcomeMsg(`Welcome Back! ${user.name}`);
         sessionStorage.removeItem("showLoginToast");
       }
-    }, []);
-
-const getCurrentUser = async () => {
-    try {
-      const res = await fetch("http://localhost:5000/api/auth/me", {
-        credentials: "include",
-      });
-
-      if (!res.ok) {
-        return;
-      }
-
-      const data = await res.json();
-
-      setUser(data.user);
-
-      // Show welcome message
-      setWelcomeMsg(`Welcome Back! ${data.user.name}`);
-    } catch (err) {
-      console.error("Failed to get current user:", err);
-    }
-
-  };
-  useEffect(() => {
-  getCurrentUser();
-}, []);
+    }, [loading, user]);
 
 
   

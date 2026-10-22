@@ -4,9 +4,10 @@ import styles from "../css/login.module.css";
 import Navbar from "./Navbar";
 import Footer from "./Footer";
 import GoogleIcon from "../assets/GoogleIcon.png"
+import { useAuth } from "./AuthContext.jsx";
 
 export default function Login() {
-  const API_URL = import.meta.env.VITE_API_URL || "http://localhost:5000";
+  const API_URL = (import.meta.env.VITE_API_URL || "http://localhost:5000").replace(/\/$/, "");
   const [formData, setFormData] = useState({
     email: "",
     password: "",
@@ -15,32 +16,8 @@ export default function Login() {
   const [isLoading, setIsLoading] = useState(false);
   const [serverError, setServerError] = useState("");
   const navigate = useNavigate();
+  const { getCurrentUser } = useAuth();
   
-  const googleAuth = async (googleCredential) => {
-  try {
-    const res = await fetch(`${API_URL}/api/auth/google`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        credential: googleCredential,
-      }),
-    });
-
-    const data = await res.json();
-
-    if (!res.ok) {
-      throw new Error(data.message || "Google authentication failed");
-    }
-
-    console.log("Google login successful:", data);
-  } catch (err) {
-    console.error("Google authentication error:", err);
-  }
-};
-
-
   const handleChange = (e) => {
     setFormData({
       ...formData,
@@ -74,6 +51,7 @@ export default function Login() {
       const res = await fetch(`${API_URL}/api/auth/login`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
+        credentials: "include",
         body: JSON.stringify(formData),
       });
 
@@ -85,10 +63,7 @@ export default function Login() {
       }
       // navigate("/");     
 
-      // Success: Store token/user (use localStorage or Context/Redux)
-      localStorage.setItem("token", data.token); // Assuming backend sends JWT token
-      localStorage.setItem("user", JSON.stringify(data.user));
-      // console.log("Logged in user:", data.user);
+      await getCurrentUser();
 
       // Redirect to dashboard/home
       sessionStorage.setItem("showLoginToast", "true");
@@ -114,7 +89,7 @@ export default function Login() {
               Log in to your Raftel Fashion account
             </p>
             <div className={styles.google}>
-                  <button onClick={() => {window.location.href = "http://localhost:5000/auth/google";}}><img src={GoogleIcon} alt="google-icon" />
+                  <button type="button" onClick={() => {window.location.href = `${API_URL}/auth/google`;}}><img src={GoogleIcon} alt="google-icon" />
                   <h2>Continue With Google</h2></button>
                   <h2 className={styles.divider}>------------------- or -------------------</h2>
               </div>

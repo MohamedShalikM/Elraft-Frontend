@@ -6,6 +6,7 @@ import React, {
 } from "react";
 
 const AuthContext = createContext(null);
+const API_URL = (import.meta.env.VITE_API_URL || "http://localhost:5000").replace(/\/$/, "");
 
 export function AuthProvider({ children }) {
   const [user, setUser] = useState(null);
@@ -13,12 +14,7 @@ export function AuthProvider({ children }) {
 
   const getCurrentUser = async () => {
     try {
-      const res = await fetch(
-        "http://localhost:5000/api/auth/me",
-        {
-          credentials: "include",
-        }
-      );
+      const res = await fetch(`${API_URL}/api/auth/me`, { credentials: "include" });
 
       if (res.ok) {
         const data = await res.json();
@@ -26,15 +22,7 @@ export function AuthProvider({ children }) {
         return;
       }
 
-      // Fallback for your normal login
-      const storedUser = localStorage.getItem("user");
-      const token = localStorage.getItem("token");
-
-      if (storedUser && token) {
-        setUser(JSON.parse(storedUser));
-      } else {
-        setUser(null);
-      }
+      setUser(null);
     } catch (error) {
       console.error("Failed to get current user:", error);
       setUser(null);
@@ -49,19 +37,10 @@ export function AuthProvider({ children }) {
 
   const logout = async () => {
     try {
-      await fetch(
-        "http://localhost:5000/api/auth/logout",
-        {
-          method: "GET",
-          credentials: "include",
-        }
-      );
+      await fetch(`${API_URL}/api/auth/logout`, { method: "POST", credentials: "include" });
     } catch (error) {
       console.error("Google logout error:", error);
     }
-
-    localStorage.removeItem("user");
-    localStorage.removeItem("token");
 
     setUser(null);
   };

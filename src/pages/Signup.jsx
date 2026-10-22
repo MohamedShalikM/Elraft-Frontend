@@ -6,7 +6,7 @@ import Footer from "./Footer";
 import GoogleIcon from "../assets/GoogleIcon.png"
 
 export default function Signup() {
-  const API_URL = import.meta.env.VITE_API_URL || "http://localhost:5000";
+  const API_URL = (import.meta.env.VITE_API_URL || "http://localhost:5000").replace(/\/$/, "");
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -98,7 +98,7 @@ export default function Signup() {
               Create your account for exclusive styles
             </p>
             <div className={styles.google}>
-                <button><img src={GoogleIcon} alt="" /><h2>Continue With Google</h2></button>
+                <button type="button" onClick={() => { window.location.href = `${API_URL}/auth/google`; }}><img src={GoogleIcon} alt="" /><h2>Continue With Google</h2></button>
                 <h2 className={styles.divider}>------------------- or -------------------</h2>
             </div>
             {serverError && (
