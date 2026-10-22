@@ -26,7 +26,7 @@
 }
 
 .hero h2 {
-    font-size: 60px;
+    font-size: 50px;
     font-family: 'Playflair',serif;
 }
 
@@ -35,4 +35,63 @@
     word-wrap: break-word; 
     width: 400px;
     text-align: center; 
+}
+
+/* --- TABLET: 768px - 1024px --- */
+@media screen and (max-width: 1024px) {
+  .kidsContainer {
+    background-attachment: scroll; /* fixed is buggy on iPad */
+  }
+  .hero {
+    min-height: 80vh;
+    padding: 90px 24px 32px;
+  }
+  .hero h2 {
+    font-size: clamp(2rem, 5vw, 3rem);
+  }
+  .hero p {
+    font-size: 1.1rem;
+    max-width: 360px;
+  }
+}
+/* --- MOBILE: up to 768px --- */
+@media screen and (max-width: 768px) {
+  .kidsContainer {
+    background-attachment: scroll;
+    background-position: center top;
+  }
+  .hero {
+    min-height: 100svh;
+    padding: 80px 16px 24px;
+    justify-content: center;
+  }
+  .hero h2 {
+    font-size: 2rem;
+    line-height: 1.2;
+    padding: 8px;
+  }
+  .hero p {
+    font-size: 1rem;
+    max-width: 300px;
+    line-height: 1.5;
+    padding: 8px;
+  }
+  .hero .ctaContainer {
+    width: 100%;
+    padding: 16px 8px;
+  }
+}
+/* --- SMALL MOBILE: up to 480px --- */
+@media screen and (max-width: 480px) {
+  .hero {
+    padding: 70px 14px 20px;
+  }
+  .hero h2 {
+    font-size: 1.75rem;
+    letter-spacing: 0.5px;
+  }
+  .hero p {
+    font-size: 0.95rem;
+    max-width: 90%;
+  }
 }

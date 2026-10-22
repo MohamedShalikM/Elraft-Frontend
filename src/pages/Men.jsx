@@ -88,7 +88,7 @@ export default function Men() {
           <h2>THE MEN'S EDIT</h2>
           <p>Discover everyday essentials, elevated streetwear, and timeless styles.</p>
           <div className={style.ctaContainer} style={{ display: 'flex', justifyContent: 'center', width: '100%' }}>
-              <CTAButton href="">Shop New Arrivals</CTAButton>
+              <CTAButton href="#products">Shop New Arrivals</CTAButton>
           </div>
         </div>
         </section>
@@ -126,7 +126,7 @@ export default function Men() {
           {category.charAt(0).toUpperCase() + category.slice(1)}
         </h1>
 
-        <div className={styles.productContainer}>
+        <div id="products"  className={styles.productContainer}>
           {products.map((product) => (
             <div className={styles.productCard} key={product.id}>
               <img src={product.img} alt={product.name} loading="lazy" />

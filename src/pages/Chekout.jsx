@@ -97,7 +97,7 @@ const Checkout = () => {
       <Navbar />
       <div className={styles.checkoutContainer}>
         <div className={styles.checkoutHeader}>
-          <div className={styles.logo}>Elraft - Fashion</div>
+          <div className={styles.logo}>Checkout</div>
         </div>
 
         <div className={styles.checkoutMain}>

@@ -46,7 +46,7 @@ function Mycart() {
 
         <div className={styles.cartHeader}>
           <h1>My Cart ({cart.length} items)</h1>
-          <p style={{ color: "#b71c43" }}>
+          <p>
             Total: ₹{total.toLocaleString("en-IN")}
           </p>
         </div>

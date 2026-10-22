@@ -1,113 +1,168 @@
-/* .cartContainer * {
-  padding: 0;
-  margin: 0;
-  box-sizing: border-box;
-  
-} */
-.cartContainer {
-  width:100%;
-  margin: 2 auto;
-  padding: 2rem 1rem;
-  min-height: 100vh;
-  background-color: #090e10;
+/* ============================================================
+   CART PAGE – glass style (matches navbar / men / profile)
+   ============================================================ */
+
+:root {
+  --rose: #b24f68;
+  --rose-deep: #b71c43;
+  --glass-bg: rgba(255, 255, 255, 0.06);
+  --glass-border: rgba(255, 255, 255, 0.85);
 }
 
+/* ---------- Page wrapper ---------- */
+.cartContainer {
+  width: 100%;
+  min-height: 100vh;
+  min-height: 100dvh;
+  margin: 0 auto;
+  padding: 120px 24px 48px;               /* top space clears the floating navbar */
+  box-sizing: border-box;
+  font-family: "Raleway", sans-serif;
+  color: #fff;
+  background-image:
+    linear-gradient(rgba(20, 16, 15, 0.75), rgba(20, 16, 15, 0.75)),
+    url("../assets/hero3.jpg");            /* change to any image you have */
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+}
+
+/* keep content to a readable width */
+.cartContainer > * {
+  max-width: 1000px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* ---------- Empty cart ---------- */
+.cartContainer h2 {
+  margin: 0 auto 1rem;
+  text-align: center;
+  font-family: "Playfair", "Playfair Display", serif;
+  font-weight: 500;
+  font-size: 2rem;
+  color: #fff;
+}
+.cartContainer > p {
+  text-align: center;
+  font-size: 1.1rem;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+/* ---------- Breadcrumbs ---------- */
 .breadCrumbs {
-  /* padding:10px; */
-  margin-top:100px;
+  margin-top: 0;                           /* navbar space now comes from container padding */
   margin-bottom: 1.5rem;
   font-size: 0.9rem;
-  color: #666;
+  color: rgba(255, 255, 255, 0.7);
 }
-.headers{
-  margin-top: 150px;
-}
+.headers { margin-top: 0; }
 
 .link {
-  color: #fff;
+  color: rgba(255, 255, 255, 0.85);
   text-decoration: none;
   font-weight: 500;
+  transition: color 0.2s;
 }
-
 .link:hover {
+  color: #fff;
   text-decoration: underline;
 }
 
+/* ---------- Cart header (title + total) ---------- */
 .cartHeader {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 2rem;
-  padding-bottom: 1rem;
-  border-bottom: 2px solid #f0f0f0;
+  gap: 16px;
+  margin-bottom: 1.5rem;
+  padding: 16px 28px;
+  box-sizing: border-box;
+  background: var(--glass-bg);
+  -webkit-backdrop-filter: blur(14px) saturate(140%);
+  backdrop-filter: blur(14px) saturate(140%);
+  border: 1px solid var(--glass-border);
+  border-radius: 999px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.28);
 }
-
 .cartHeader h1 {
   margin: 0;
+  font-family: "Playfair", "Playfair Display", serif;
+  font-weight: 500;
   font-size: 1.8rem;
-  color: #333;
+  color: #fff;
 }
-
 .cartHeader p {
   margin: 0;
-  font-size: 1.3rem;
+  font-family: "Poppins", sans-serif;
+  font-size: 1.2rem;
   font-weight: 600;
-  color: #e74c3c;
+  color: #fff;
+  text-align: right;
 }
 
+/* ---------- Cart item ---------- */
 .cartItem {
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 1.5rem;
-  padding: 1.5rem;
-  border: 1px solid #e9ecef;
-  border-radius: 12px;
   margin-bottom: 1rem;
-  background: #fff;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
-  transition: all 0.3s ease;
+  padding: 1.25rem 1.5rem;
+  box-sizing: border-box;
+  color: #fff;
+  background: var(--glass-bg);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  border-radius: 24px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.25);
+  transition: transform 0.25s ease, border-color 0.25s ease;
 }
-
 .cartItem:hover {
-  box-shadow: 0 4px 16px rgba(0,0,0,0.1);
-  transform: translateY(-2px);
+  transform: translateY(-3px);
+  border-color: rgba(255, 255, 255, 0.9);
 }
 
 .itemDetails {
   display: flex;
   align-items: center;
-  flex-direction: column;
+  flex-direction: row;                     /* was column: image + name now sit side by side */
   gap: 1rem;
   flex: 1;
   min-width: 0;
 }
 
-.cartItem1 img {
-  width: 80px;
-  height: 80px;
+.cartItem1 img,
+.itemDetails img {
+  width: 88px;
+  height: 88px;
   object-fit: cover;
-  border-radius: 8px;
+  border-radius: 16px;
   flex-shrink: 0;
 }
 
-.cartItem1 .itemDetails h3 {
+.cartItem1 .itemDetails h3,
+.itemDetails h3 {
+  flex: 1;
   margin: 0;
   font-size: 1.1rem;
   font-weight: 600;
-  color: #2c3e50;
-  flex: 1;
   line-height: 1.3;
+  color: #fff;
 }
 
-.cartItem1 .itemDetails .price {
-  font-size: 1rem;
-  font-weight: 600;
-  color: #27ae60;
+.cartItem1 .itemDetails .price,
+.itemDetails .price {
   margin: 0;
+  font-family: "Poppins", sans-serif;
+  font-size: 1rem;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.8);
   white-space: nowrap;
 }
 
+/* ---------- Quantity controls ---------- */
 .quantityControls {
   display: flex;
   align-items: center;
@@ -116,156 +171,149 @@
 }
 
 .qtyBtn {
-  width: 40px;
-  height: 40px;
-  border: 2px solid #ddd;
-  background: #fff;
-  border-radius: 8px;
-  font-size: 1.2rem;
-  font-weight: 600;
-  color: #333;
-  cursor: pointer;
-  transition: all 0.2s ease;
   display: flex;
   align-items: center;
   justify-content: center;
+  width: 38px;
+  height: 38px;
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  border-radius: 50%;                      /* round to match the pill style */
+  background: transparent;
+  color: #fff;
+  font-size: 1.2rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.25s ease, color 0.25s ease, transform 0.2s ease;
 }
-
 .qtyBtn:hover {
-  background: #f8f9fa;
-  border-color: #b24f68;
-  color: #b24f68;
+  background: #fff;
+  color: #111;
 }
-
-.qtyBtn:active {
-  transform: scale(0.95);
-}
+.qtyBtn:active { transform: scale(0.92); }
 
 .quantityControls span {
-  font-weight: 600;
-  font-size: 1.1rem;
   min-width: 25px;
   text-align: center;
-  color: #333;
+  font-weight: 600;
+  font-size: 1.1rem;
+  color: #fff;
 }
 
 .quantityControls .totalPrice {
-  font-size: 1.1rem;
-  font-weight: 700;
-  color: #b24f68;
-  margin: 0 1.5rem 0 1rem;
-  white-space: nowrap;
   min-width: 80px;
+  margin: 0 1.5rem 0 1rem;
   text-align: right;
+  white-space: nowrap;
+  font-family: "Poppins", sans-serif;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #fff;
 }
 
+/* ---------- Remove button ---------- */
 .removeBtn {
-  width: 40px;
-  height: 40px;
-  border: none;
-  background: #ff4757;
-  color: white;
-  border-radius: 8px;
-  font-size: 1.2rem;
-  font-weight: bold;
-  cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: all 0.2s ease;
   flex-shrink: 0;
+  width: 38px;
+  height: 38px;
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  border-radius: 50%;
+  background: transparent;
+  color: #fff;
+  font-size: 1.1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.25s ease, border-color 0.25s ease, transform 0.2s ease;
 }
-
 .removeBtn:hover {
-  background: #ff3838;
-  transform: scale(1.05);
+  background: var(--rose-deep);
+  border-color: var(--rose-deep);
+  transform: scale(1.08);
 }
 
-.breadCrumbscartFooter {
+/* ---------- Footer / checkout ---------- */
+.breadCrumbscartFooter,
+.cartFooter {
   margin-top: 2rem;
   padding-top: 2rem;
-  border-top: 2px solid #f0f0f0;
+  border-top: 1px solid rgba(255, 255, 255, 0.25);
   text-align: center;
 }
 
 .checkoutBtn {
-  background: linear-gradient(135deg, #b71c43 0%, #b24f68 100%);
-  color: white;
-  border: none;
-  padding: 1.2rem 3rem;
-  font-size: 1.2rem;
-  font-weight: 600;
-  border-radius: 12px;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  box-shadow: 0 4px 15px #b24f68;
-}
-
-.checkoutBtn:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 15px #b24f68;
-}
-
-.checkoutBtn:active {
-  transform: translateY(0);
-}
-
-/* Empty cart styles */
-.cartContainer h2 {
-  text-align: center;
-  color: #666;
-  font-size: 2rem;
-  margin-bottom: 1rem;
-}
-
-.cartContainer p {
-  text-align: center;
-  color: #999;
+  padding: 1rem 3rem;
+  border: 1px solid #fff;
+  border-radius: 999px;
+  background: transparent;
+  color: #fff;
+  font-family: "Poppins", sans-serif;
   font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  /* box-shadow: 0 8px 25px rgba(178, 79, 104, 0.45); */
+  transition: background 0.25s ease, transform 0.25s ease, box-shadow 0.25s ease;
+}
+.checkoutBtn:hover {
+  /* background: transparent; */
+  border-color: white;
+  transform: translateY(-2px);
+  /* box-shadow: 0 12px 30px rgba(183, 28, 67, 0.5); */
+}
+.checkoutBtn:active { transform: translateY(0); }
+
+.checkoutBtn:focus-visible,
+.qtyBtn:focus-visible,
+.removeBtn:focus-visible {
+  outline: 2px solid #fff;
+  outline-offset: 3px;
 }
 
-/* Responsive Design */
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
 @media (max-width: 768px) {
-  .cartContainer {
-    padding: 1rem 0.5rem;
-  }
-  
+  .cartContainer { padding: 96px 12px 32px; }
+
   .cartHeader {
     flex-direction: column;
-    gap: 1rem;
+    gap: 6px;
+    padding: 16px 20px;
     text-align: center;
+    border-radius: 28px;
   }
-  
+  .cartHeader p { text-align: center; }
+
   .cartItem {
     flex-direction: column;
     gap: 1rem;
     padding: 1.2rem;
+    border-radius: 22px;
   }
-  
+
   .itemDetails {
     flex-direction: column;
     text-align: center;
     gap: 0.8rem;
   }
-  
-  .itemDetails img {
+  .itemDetails img,
+  .cartItem1 img {
     width: 120px;
     height: 120px;
   }
-  
+
   .quantityControls {
     order: -1;
     justify-content: center;
-    width:200px;  }
-  
-  .totalPrice {
+    width: 100%;
+    max-width: 260px;
+  }
+  .quantityControls .totalPrice {
     margin: 0;
+    min-width: 0;
     order: 1;
   }
-  .qtyBtn{
-    padding:10px;
-  }
-  
   .removeBtn {
     order: 2;
     margin-left: 4px;
@@ -273,12 +321,14 @@
 }
 
 @media (max-width: 480px) {
-  .cartHeader h1 {
-    font-size: 1.5rem;
-  }
-  
+  .cartHeader h1 { font-size: 1.5rem; }
   .checkoutBtn {
+    width: 100%;
     padding: 1rem 2rem;
-    font-size: 1.1rem;
+    font-size: 1.05rem;
   }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { transition: none !important; animation: none !important; }
 }

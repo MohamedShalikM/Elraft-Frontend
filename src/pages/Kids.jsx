@@ -89,7 +89,7 @@ export default function Kids() {
           <h2>THE KIDS EDIT</h2>
           <p>Discover everyday essentials, elevated streetwear, and timeless styles.</p>
           <div className={style.ctaContainer} style={{ display: 'flex', justifyContent: 'center', width: '100%' }}>
-              <CTAButton href="">Shop New Arrivals</CTAButton>
+              <CTAButton href="#products">Shop New Arrivals</CTAButton>
           </div>
         </div>
     </div>
@@ -129,7 +129,7 @@ export default function Kids() {
       <main>
         <h1 className={styles.mainh1}>{categoryTitles[category]}</h1>
 
-        <div className={styles.productContainer}>
+        <div id="products" className={styles.productContainer}>
           {products.map((product) => (
             <div className={styles.productCard} key={product.id}>
               <img src={product.img} alt={product.name} loading="lazy" />

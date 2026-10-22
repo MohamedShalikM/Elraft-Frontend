@@ -1,11 +1,39 @@
+/* ============================================================
+   CHECKOUT PAGE – glass style (matches navbar / men / cart / profile)
+   ============================================================ */
+
+:root {
+  --rose: #b24f68;
+  --rose-deep: #b71c43;
+  --glass-bg: rgba(255, 255, 255, 0.06);
+  --glass-border: rgba(255, 255, 255, 0.85);
+  --error: #ff7b8f;
+}
+
+/* ---------- Page wrapper ---------- */
 .checkoutContainer {
+  position: relative;
+  isolation: isolate;
   max-width: 600px;
-  margin: 0 auto;
-  padding: 32px 20px;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-  background: #fafafa;
   min-height: 100vh;
   min-height: 100dvh;
+  margin: 0 auto;
+  padding: 32px 20px 48px;
+  box-sizing: border-box;
+  font-family: "Raleway", sans-serif;
+  color: #fff;
+}
+/* full-screen photo behind the narrow column, so the glass has something to blur */
+.checkoutContainer::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  background-image:
+    linear-gradient(rgba(20, 16, 15, 0.75), rgba(20, 16, 15, 0.75)),
+    url("../assets/hero3.jpg");           /* change to any image you have */
+  background-size: cover;
+  background-position: center;
 }
 
 .checkoutHeader {
@@ -14,92 +42,101 @@
 }
 
 .logo {
-  font-size: 28px;
-  font-weight: 700;
-  background: linear-gradient(135deg, #b71c43 0%, #b24f68 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+  font-family: "Raleway",sans-serif;
+  font-size: 30px;
+  font-weight: 600;
+  color: #fff;
+  margin-top: 80px;
 }
 
 .checkoutMain {
   display: flex;
   flex-direction: column;
-  gap: 30px;
+  gap: 24px;
 }
 
-
-/* Order Summary */
-.orderSummary {
-  background: white;
-  border-radius: 12px;
-  padding: 24px;
-  box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+/* ---------- Shared glass card ---------- */
+.orderSummary,
+.checkoutForm {
+  background: var(--glass-bg);
+  -webkit-backdrop-filter: blur(14px) saturate(140%);
+  backdrop-filter: blur(14px) saturate(140%);
+  border: 1px solid var(--glass-border);
+  border-radius: 28px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.28);
+  box-sizing: border-box;
 }
+.orderSummary { padding: 24px; }
+.checkoutForm { padding: 32px; }
 
+/* ---------- Order summary ---------- */
 .productItem {
   display: flex;
   gap: 16px;
   margin-bottom: 24px;
   padding-bottom: 20px;
-  border-bottom: 1px solid #eee;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.25);
 }
 
 .productImage {
-  width: 60px;
-  height: 60px;
-  border-radius: 8px;
-  background: #f5f5f5;
   display: flex;
   align-items: center;
   justify-content: center;
+  width: 60px;
+  height: 60px;
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.3);
   font-size: 24px;
+  overflow: hidden;
+}
+.productImage img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
-.productDetails {
-  flex: 1;
-}
+.productDetails { flex: 1; }
 
 .productTitle {
-  font-weight: 600;
   margin-bottom: 4px;
-  color: #333;
+  font-weight: 600;
+  color: #fff;
 }
 
 .productPrice {
+  font-family: "Poppins", sans-serif;
   font-size: 18px;
-  font-weight: 700;
-  color: #000;
+  font-weight: 600;
+  color: #fff;
 }
 
-.priceBreakdown {
-  margin-bottom: 20px;
-}
+.priceBreakdown { margin-bottom: 20px; }
 
 .priceRow {
   display: flex;
   justify-content: space-between;
   margin-bottom: 8px;
   font-size: 14px;
-  color: #666;
+  color: rgba(255, 255, 255, 0.7);
 }
 
 .totalRow {
-  font-size: 20px !important;
-  font-weight: 700 !important;
-  color: #000 !important;
-  margin-top: 12px !important;
-  border-top: 1px solid #eee;
+  margin-top: 12px;
   padding-top: 12px;
+  border-top: 1px solid rgba(255, 255, 255, 0.25);
+  font-family: "Poppins", sans-serif;
+  font-size: 20px;
+  font-weight: 600;
+  color: #fff;
 }
+/* higher specificity replaces the old !important rules */
+.priceRow.totalRow { font-size: 20px; font-weight: 600; color: #fff; }
+.priceRow.discountRow { color: #7be0a4; }
+.discountRow { color: #7be0a4; }
 
-.discountRow {
-  color: #e74c3c !important;
-}
-
-.giftCardSection {
-  margin-top: 20px;
-}
+/* ---------- Gift card ---------- */
+.giftCardSection { margin-top: 20px; }
 
 .giftCardInputWrapper {
   display: flex;
@@ -108,259 +145,220 @@
 
 .giftCardInput {
   flex: 1;
-  padding: 12px 16px;
-  border: 1px solid #ddd;
-  border-radius: 8px;
+  min-width: 0;
+  padding: 12px 18px;
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  border-radius: 999px;
+  background: transparent;
+  color: #fff;
+  font-family: inherit;
   font-size: 14px;
+  outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+.giftCardInput::placeholder { color: rgba(255, 255, 255, 0.55); }
+.giftCardInput:focus {
+  border-color: #fff;
+  box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.15);
 }
 
 .applyButton {
-  padding: 12px 24px;
-  background:#b24f68;
-  color: white;
-  border: none;
-  border-radius: 8px;
+  padding: 12px 26px;
+  border: 1px solid var(--rose);
+  border-radius: 999px;
+  background: var(--rose);
+  color: #fff;
+  font-family: "Poppins", sans-serif;
   font-weight: 600;
   cursor: pointer;
-  transition: background 0.2s;
+  transition: background 0.25s, transform 0.25s;
 }
-
 .applyButton:hover:not(:disabled) {
-  background: #b71c43;
+  background: var(--rose-deep);
+  border-color: var(--rose-deep);
+  transform: translateY(-2px);
 }
-
 .applyButton:disabled {
-  background: #ccc;
+  background: rgba(255, 255, 255, 0.12);
+  border-color: rgba(255, 255, 255, 0.25);
+  color: rgba(255, 255, 255, 0.45);
   cursor: not-allowed;
 }
+
+/* ---------- Payment buttons (brand colors kept, pill shape) ---------- */
 .paymentButtons {
   display: flex;
-  gap: 12px;
-  justify-content: center;
-  margin: 24px 0;
   flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px;
+  margin: 24px 0;
 }
 
-/* Individual payment buttons */
 .payButton {
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: 8px;
+  flex: 1;
+  max-width: 180px;
+  min-height: 52px;
   padding: 14px 20px;
-  border: none;
-  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  border-radius: 999px;
+  color: #fff;
+  font-family: "Poppins", sans-serif;
   font-size: 16px;
   font-weight: 600;
   cursor: pointer;
   transition: all 0.3s ease;
-  min-height: 52px;
-  flex: 1;
-  max-width: 180px;
+}
+.payButton img {
+  width: 24px;
+  height: 24px;
+  border-radius: 4px;
 }
 
-/* Brand-specific colors */
-.phonepe {
-  background: linear-gradient(135deg, #00c851, #00b140);
-  color: white;
-}
-
+.phonepe { background: linear-gradient(135deg, #00c851, #00b140); }
 .phonepe:hover {
   background: linear-gradient(135deg, #00d95e, #00c140);
   transform: translateY(-2px);
   box-shadow: 0 8px 25px rgba(0, 200, 81, 0.4);
 }
 
-.gpay {
-  background: linear-gradient(135deg, #5f51fb, #4285f4);
-  color: white;
-}
-
+.gpay { background: linear-gradient(135deg, #5f51fb, #4285f4); }
 .gpay:hover {
   background: linear-gradient(135deg, #6b62ff, #5298ff);
   transform: translateY(-2px);
   box-shadow: 0 8px 25px rgba(95, 81, 251, 0.4);
 }
 
-
-
-
-/* Icon styling */
-.payButton img {
-  width: 24px;
-  height: 24px;
-  border-radius: 4px;
-}
-.amazonpay {
-  background: linear-gradient(135deg, #13a8e8,#0c6186);
-  /* background-color: #13a8e8; */
-  color:#fff;
-}
-.amazonpay:hover{
-  /* background: linear-gradient(135deg, #6b62ff, #5298ff); */
+.amazonpay { background: linear-gradient(135deg, #13a8e8, #0c6186); }
+.amazonpay:hover {
   transform: translateY(-2px);
-  box-shadow: 0 8px 25px #4cc0f2;
+  box-shadow: 0 8px 25px rgba(76, 192, 242, 0.45);
 }
 
-.paytm {
-  background: linear-gradient(135deg, #00b140, #009933);
-  color:#fff;
+.paytm { background: linear-gradient(135deg, #00b140, #009933); }
+.paytm:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(0, 177, 64, 0.4);
 }
 
-
-/* MOBILE - Full width stacked */
-@media (max-width: 768px) {
-  .paymentButtons {
-    flex-direction: column;
-    gap: 10px;
-  }
-  
-  .payButton {
-    max-width: 100%;
-    justify-content: center;
-  }
-}
-
-/* Payment Buttons */
-/* .paymentButtons {
-  display: flex;
-  gap: 12px;
-  background: white;
-  padding: 20px;
-  border-radius: 12px;
-  box-shadow: 0 4px 20px rgba(0,0,0,0.08);
-}
-
-.shopButton, .paypalButton, .payButton {
-  flex: 1;
-  padding: 16px;
-  border: none;
-  border-radius: 8px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all 0.2s;
-}
-
-.shopButton {
-  background: #f8f9fa;
-  color: #b24f68;
-}
-
-.paypalButton {
-  background:#b71c43;
-  color: white;
-}
-
-.payButton {
-  background: linear-gradient(135deg, #b71c43 0%,#b24f68 100%);
-  color: white;
-} */
-
-/* Form Styles */
-.checkoutForm {
-  background: white;
-  border-radius: 12px;
-  padding: 32px;
-  box-shadow: 0 4px 20px rgba(0,0,0,0.08);
-}
-
-.formSection {
-  margin-bottom: 32px;
-}
-
-.formSection:last-child {
-  margin-bottom: 0;
-}
+/* ---------- Form ---------- */
+.formSection { margin-bottom: 32px; }
+.formSection:last-child { margin-bottom: 0; }
 
 .formSection h3 {
-  font-size: 20px;
-  font-weight: 700;
-  margin-bottom: 8px;
-  color: #000;
+  margin: 0 0 8px;
+  font-family: "Playfair", "Playfair Display", serif;
+  font-size: 22px;
+  font-weight: 500;
+  color: #fff;
 }
 
 .helpText {
-  color: #666;
   margin-bottom: 24px;
   font-size: 14px;
+  color: rgba(255, 255, 255, 0.65);
 }
 
-.formGroup {
-  margin-bottom: 20px;
-}
+.formGroup { margin-bottom: 20px; }
 
 .formRow {
   display: flex;
   gap: 16px;
 }
-
-.half {
-  flex: 1;
-}
-
-.quarter {
-  flex: 0.5;
-}
+.half { flex: 1; }
+.quarter { flex: 0.5; }
 
 .formInput {
   width: 100%;
-  padding: 16px;
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  font-size: 16px;
-  transition: border-color 0.2s;
+  padding: 14px 20px;
   box-sizing: border-box;
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  border-radius: 999px;
+  background: transparent;
+  color: #fff;
+  font-family: inherit;
+  font-size: 16px;
+  transition: border-color 0.2s, box-shadow 0.2s, background 0.2s;
 }
-
+.formInput::placeholder { color: rgba(255, 255, 255, 0.55); }
 .formInput:focus {
   outline: none;
-  border-color: #b24f68;
-  box-shadow: 0 0 0 3px #f1d5dc;
+  border-color: #fff;
+  background: rgba(255, 255, 255, 0.08);
+  box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.15);
 }
+.formInput.error { border-color: var(--error); }
 
-.formInput.error {
-  border-color: #e74c3c;
+/* stop browsers painting autofilled fields white */
+.formInput:-webkit-autofill,
+.giftCardInput:-webkit-autofill {
+  -webkit-text-fill-color: #fff;
+  transition: background-color 9999s ease-in-out 0s;
 }
 
 .errorText {
-  color: #e74c3c;
-  font-size: 14px;
-  margin-top: 4px;
   display: block;
+  margin: 6px 0 0 16px;
+  font-size: 14px;
+  color: var(--error);
 }
 
 .submitButton {
   width: 100%;
-  padding: 20px;
-  background: #b24f68;
-  color: white;
-  border: none;
-  border-radius: 8px;
+  padding: 18px;
+  border: 1px solid var(--rose);
+  border-radius: 999px;
+  background: var(--rose);
+  color: #fff;
+  font-family: "Poppins", sans-serif;
   font-size: 18px;
   font-weight: 600;
   cursor: pointer;
-  transition: background 0.2s;
+  box-shadow: 0 8px 25px rgba(178, 79, 104, 0.45);
+  transition: background 0.25s, transform 0.25s, box-shadow 0.25s;
 }
-
 .submitButton:hover {
-  background: #b71c43;
+  background: var(--rose-deep);
+  border-color: var(--rose-deep);
+  transform: translateY(-2px);
+  box-shadow: 0 12px 30px rgba(183, 28, 67, 0.5);
 }
 
-/* Responsive */
+.submitButton:focus-visible,
+.applyButton:focus-visible,
+.payButton:focus-visible {
+  outline: 2px solid #fff;
+  outline-offset: 3px;
+}
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
 @media (max-width: 768px) {
-  .checkoutContainer {
-    padding: 16px;
-  }
-  
+  .checkoutContainer { padding: 16px 12px 32px; }
+
+  .orderSummary { padding: 20px; border-radius: 24px; }
+  .checkoutForm { padding: 24px 20px; border-radius: 24px; }
+
   .paymentButtons {
     flex-direction: column;
+    gap: 10px;
   }
-  
+  .payButton {
+    max-width: 100%;
+    width: 100%;
+  }
+
   .formRow {
     flex-direction: column;
     gap: 0;
   }
-  
-  .giftCardInputWrapper {
-    flex-direction: column;
-  }
+  .giftCardInputWrapper { flex-direction: column; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { transition: none !important; animation: none !important; }
 }

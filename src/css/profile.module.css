@@ -1,142 +1,212 @@
+/* ============================================================
+   PROFILE PAGE – glass style (matches navbar / men page)
+   ============================================================ */
+
+:root {
+  --rose: #b24f68;
+  --rose-deep: #b71c43;
+  --glass-bg: rgba(255, 255, 255, 0.06);
+  --glass-border: rgba(255, 255, 255, 0.85);
+}
+
+/* ---------- Page wrapper ---------- */
 .container {
   min-height: 100vh;
   min-height: 100dvh;
-  background: linear-gradient(135deg, #b24f68 0%, #b71c43 50%, #000 100%);
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 32px 16px;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  padding: 110px 16px 32px;              /* top space clears the floating navbar */
+  box-sizing: border-box;
+  font-family: "Raleway", sans-serif;
+  color: #fff;
+  background-image:
+    linear-gradient(rgba(20, 16, 15, 0.7), rgba(20, 16, 15, 0.7)),
+    url("../assets/hero3.jpg");           /* change to any image you have */
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;           /* keeps something behind the blur */
 }
 
-.profileCard, .card {
-  background: rgba(255, 255, 255, 0.95);
-  backdrop-filter: blur(10px);
-  border-radius: 20px;
-  padding: 20px;
-  box-shadow: 0 20px 40px rgba(0,0,0,0.1);
-  text-align: center;
-  max-width: 400px;
+/* ---------- Glass card ---------- */
+.profileCard,
+.card {
   width: 100%;
-  transition: transform 0.3s ease;
+  max-width: 420px;
+  padding: 32px 28px;
+  box-sizing: border-box;
+  text-align: center;
+  color: #fff;
+  background: var(--glass-bg);
+  -webkit-backdrop-filter: blur(14px) saturate(140%);
+  backdrop-filter: blur(14px) saturate(140%);
+  border: 1px solid var(--glass-border);
+  border-radius: 28px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.28);
+  transition: transform 0.3s ease, border-color 0.3s ease;
 }
-
 .profileCard:hover {
   transform: translateY(-5px);
+  border-color: #fff;
 }
 
-
-/* Main profile name (keep your existing) */
-.title, .name {
+/* ---------- Avatar ---------- */
+.avatar {
+  width: 96px;
+  height: 96px;
+  margin: 0 auto 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: var(--rose);
+  border: 2px solid #fff;
+  color: #fff;
+  font-family: "Poppins", sans-serif;
   font-size: 2rem;
-  margin-bottom: 20px;
-  color: #333;
-  font-weight: 700;
+  font-weight: 600;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
 }
 
-/* Container for all contact info */
+/* ---------- Name / title ---------- */
+.title,
+.name {
+  margin: 0 0 22px;
+  font-family: "Playfair", "Playfair Display", serif;
+  font-size: 2rem;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  color: #fff;
+}
+
+/* ---------- Contact info ---------- */
 .contactInfo {
   display: flex;
   flex-direction: column;
-  gap: 15px;
-  margin-bottom: 30px;
+  gap: 12px;
+  margin-bottom: 26px;
 }
 
-/* Individual contact items - perfect alignment */
-.email, .phone, .address {
+.email,
+.phone,
+.address {
   display: flex;
   align-items: center;
   gap: 12px;
-  padding: 12px 16px;
-  background: rgba(255, 255, 255, 0.7);
-  border-radius: 12px;
-  backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.3);
+  padding: 12px 18px;
+  font-size: 0.95rem;
+  text-align: left;
+  color: rgba(255, 255, 255, 0.9);
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  border-radius: 999px;
   transition: all 0.3s ease;
-  font-size: 1rem;
-  color: #444;
 }
-
-.email:hover, .phone:hover, .address:hover {
-  background: rgba(255, 255, 255, 0.9);
+.email:hover,
+.phone:hover,
+.address:hover {
+  background: rgba(255, 255, 255, 0.14);
+  border-color: #fff;
   transform: translateX(5px);
-  box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.25);
 }
 
-/* Icon styling */
-.email img, .phone img, .address img {
+/* icons: white on dark glass */
+.email img,
+.phone img,
+.address img {
   width: 20px;
   height: 20px;
-  filter: grayscale(0.3);
+  filter: invert(1);
+  opacity: 0.85;
   transition: all 0.3s ease;
 }
-.phone img{
-  transform: rotate(90deg); 
-}
+.phone img { transform: rotate(90deg); }
 
-
-.email:hover img, .phone:hover img, .address:hover img {
-  filter: grayscale(0);
+.email:hover img,
+.address:hover img {
+  opacity: 1;
   transform: scale(1.1);
 }
-.phone:hover img{
-  transform: rotate(90deg) scale(1.1); 
-  
+.phone:hover img {
+  opacity: 1;
+  transform: rotate(90deg) scale(1.1);
 }
 
-/* Text alignment */
-.email span, .phone span, .address span {
+.email span,
+.phone span,
+.address span {
   flex: 1;
   font-weight: 500;
+  word-break: break-word;
 }
 
-
+/* ---------- Stats row ---------- */
 .info {
   display: flex;
   justify-content: space-around;
-  margin-bottom: 30px;
-  padding: 20px 0;
-  border-top: 1px solid #eee;
-  border-bottom: 1px solid #eee;
+  margin-bottom: 26px;
+  padding: 18px 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.25);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.25);
 }
-
-.infoItem {
-  text-align: center;
-}
-
+.infoItem { text-align: center; }
 .infoItem span {
   display: block;
-  color: #888;
-  font-size: 0.9rem;
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.65);
 }
-
 .infoItem strong {
   display: block;
+  font-family: "Poppins", sans-serif;
   font-size: 1.5rem;
-  color: #b24f68;
+  font-weight: 600;
+  color: #fff;
 }
 
-.logoutBtn, .loginBtn {
-  background: linear-gradient(45deg, #b24f68, #b71c43);
-  color: white;
-  border: none;
-  padding: 12px 30px;
-  border-radius: 50px;
-  font-size: 1rem;
-  cursor: pointer;
-  transition: all 0.3s ease;
+/* ---------- Buttons ---------- */
+.logoutBtn,
+.loginBtn {
   width: 100%;
+  padding: 12px 30px;
+  border-radius: 999px;
+  border: 1px solid #fff;
+  background: transparent;
+  color: #fff;
+  font-family: "Poppins", sans-serif;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.25s ease, color 0.25s ease, transform 0.25s ease;
 }
-
-.logoutBtn:hover, .loginBtn:hover {
+.logoutBtn:hover,
+.loginBtn:hover {
+  background: #fff;
+  color: #111;
   transform: translateY(-2px);
-  box-shadow: 0 10px 20px #b24f68;
+}
+/* primary (rose) variant for login */
+.loginBtn {
+  background: var(--rose);
+  border-color: var(--rose);
+}
+.loginBtn:hover {
+  background: var(--rose-deep);
+  border-color: var(--rose-deep);
+  color: #fff;
 }
 
+.logoutBtn:focus-visible,
+.loginBtn:focus-visible {
+  outline: 2px solid #fff;
+  outline-offset: 3px;
+}
+
+/* ---------- Message / loading ---------- */
 .message {
-  color: #666;
   margin-bottom: 20px;
-  font-size: 1.1rem;
+  font-size: 1.05rem;
+  color: rgba(255, 255, 255, 0.8);
 }
 
 .loading {
@@ -146,30 +216,28 @@
   min-height: 100vh;
   min-height: 100dvh;
   font-size: 1.2rem;
-  color: white;
+  color: #fff;
+  background: #14100f;
 }
 
-
-
-
-
-
-/* Responsive */
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
 @media (max-width: 768px) {
-  .profileCard, .card {
-    padding: 30px 20px;
-    margin: 10px;
-  }
+  .container { padding-top: 90px; }
 
-  .title, .name {
-    font-size: 1.5rem;
+  .profileCard,
+  .card {
+    padding: 28px 20px;
+    border-radius: 24px;
   }
+  .title,
+  .name { font-size: 1.6rem; }
 
   .info {
     flex-direction: column;
-    gap: 15px;
+    gap: 14px;
   }
-
   .avatar {
     width: 80px;
     height: 80px;
@@ -178,11 +246,11 @@
 }
 
 @media (max-width: 480px) {
-  .container {
-    padding: 10px;
-  }
+  .container { padding: 84px 12px 20px; }
+  .profileCard,
+  .card { padding: 24px 16px; }
+}
 
-  .profileCard, .card {
-    padding: 25px 15px;
-  }
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { transition: none !important; animation: none !important; }
 }
